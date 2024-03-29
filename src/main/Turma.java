@@ -30,7 +30,7 @@ public class Turma {
         // TODO: pegar notas dos alunos e fazer a média.
     }
 
-    public void publicarNota(Aluno aluno, float nota) {
+    public void publicarNota(Aluno aluno, String prova, float nota) {
         // set nota de um aluno específico.
         return;
     }

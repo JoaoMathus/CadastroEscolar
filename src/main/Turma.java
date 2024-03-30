@@ -9,13 +9,13 @@ public class Turma {
 
     public Turma() {
         this.alunos = new HashSet<>();
-        numero = 0;     // será configurado automaticamente.
+        numero = "0";     // será configurado automaticamente.
     }
 
     public Turma(Professor professor) {
         this.professor = professor;
         this.alunos = new HashSet<>();
-        numero = 0;     // será configurado automaticamente.
+        numero = "0";     // será configurado automaticamente.
     }
 
     public void adicionarAluno(Aluno aluno) {
@@ -34,8 +34,10 @@ public class Turma {
     }
 
     public void publicarNota(Aluno aluno, String prova, float nota) {
-        // set nota de um aluno específico.
-        return;
+        // Publicar uma nota de um aluno específico.
+        alunos.stream()
+                .filter(a -> a.equals(aluno))
+                .forEach(a -> a.setNota(prova, nota));
     }
 
     public void alocarProfessor(Professor professor) {

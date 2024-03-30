@@ -25,4 +25,10 @@ public class Aluno extends Pessoa{
         notasDeProva.put(prova, nota);
     }
 
+    public float calcularMedia() {
+        return getNotas()
+                .values()
+                .stream()
+                .reduce(0.0F, Float::sum) / getNotas().size();
+    }
 }

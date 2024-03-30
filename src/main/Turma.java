@@ -26,8 +26,11 @@ public class Turma {
         this.alunos.remove(aluno);
     }
 
-    public void calcularMediaDaTurma() {
-        // TODO: pegar notas dos alunos e fazer a média.
+    public float calcularMediaDaTurma() {
+        // Abrace o paradigma funcional
+        return (float) alunos.stream()
+                .mapToDouble(Aluno::calcularMedia)
+                .sum() / alunos.size();
     }
 
     public void publicarNota(Aluno aluno, String prova, float nota) {

@@ -43,9 +43,4 @@ public class Turma {
     public void alocarProfessor(Professor professor) {
         this.professor = professor;
     }
-
-    public void todasAsNotas() {
-        // Retornar todas as notas dos alunos;
-        return;
-    }
 }

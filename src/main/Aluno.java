@@ -26,6 +26,7 @@ public class Aluno extends Pessoa{
     }
 
     public float calcularMedia() {
+        // A maravilha que é programação funcional
         return getNotas()
                 .values()
                 .stream()

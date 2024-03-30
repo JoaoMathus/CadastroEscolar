@@ -5,7 +5,7 @@ import java.util.HashSet;
 public class Turma {
     private Professor professor;   // professor designado.
     private HashSet<Aluno> alunos; // conjunto de alunos.
-    private int numero;            // número da turma.
+    private final String numero;   // número da turma.
 
     public Turma() {
         this.alunos = new HashSet<>();

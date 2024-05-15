@@ -1,4 +1,4 @@
-package main;
+package classes_base;
 
 public class Pessoa {
 }

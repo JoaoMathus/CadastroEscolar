@@ -1,7 +1,8 @@
-package main;
+package classes_base;
+
 import java.util.*;
 
-public class Aluno extends Pessoa{
+public class Aluno extends Pessoa {
 
     final String matricula;
     Map<String, Float> notasDeProva = new HashMap<>();

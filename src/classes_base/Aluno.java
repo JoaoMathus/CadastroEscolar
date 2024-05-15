@@ -8,7 +8,6 @@ public class Aluno extends Pessoa {
     Map<String, Float> notasDeProva = new HashMap<>();
 
     public Aluno(String nome, String telefone, Date dataNascimento, String email, String matricula){
-        super(nome, telefone, dataNascimento, email);
         this.matricula = matricula;
         notasDeProva.put("AV1", 0.0f);
         notasDeProva.put("AV2", 0.0f);

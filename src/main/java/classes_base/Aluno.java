@@ -1,39 +1,107 @@
 package classes_base;
 
-import lombok.Getter;
-import lombok.NoArgsConstructor;
-import lombok.Setter;
-
-import java.util.*;
-
-@Getter @Setter @NoArgsConstructor
 public class Aluno extends Pessoa {
-    final String matricula;
-    Map<String, Float> notasDeProva = new HashMap<>();
-
+    private String matricula;
     private String serie;
-    private String numeroTurma;
+    private int idTurma;
     private String tipoSanguineo;
-    private List<String> telefones = new ArrayList<String>();
     private String cpfDoResponsavel;
+    private boolean aprovado;
 
-    public Aluno(Long id, String nome, String dataNascimento, String matricula, String serie, String numeroTurma, String tipoSanguineo, List<String> telefones, String cpfDoResponsavel) {
-        super(id, nome, dataNascimento);
+    public Aluno(int id, String nome, String telefone, String celular,
+                 String dataNascimento, String matricula, String serie,
+                 int idTurma, String tipoSanguineo,
+                 String cpfDoResponsavel, boolean aprovado) {
+        super(id, nome, telefone, celular, dataNascimento);
         this.matricula = matricula;
         this.serie = serie;
-        this.numeroTurma = numeroTurma;
+        this.idTurma = idTurma;
         this.tipoSanguineo = tipoSanguineo;
-        this.telefones = telefones;
         this.cpfDoResponsavel = cpfDoResponsavel;
-        notasDeProva.put("AV1", 0.0f);
-        notasDeProva.put("AV2", 0.0f);
+        this.aprovado = aprovado;
     }
 
-    public float calcularMedia() {
-        // A maravilha que é programação funcional
-        return getNotas()
-                .values()
-                .stream()
-                .reduce(0.0F, Float::sum) / getNotas().size();
+    public int getId() {
+        return id;
+    }
+
+    public String getNome() {
+        return nome;
+    }
+
+    public void setNome(String n) {
+        nome = n;
+    }
+
+    public String getTelefone() {
+        return telefone;
+    }
+
+    public void setTelefone(String tel) {
+        telefone = tel;
+    }
+
+    public String getCelular() {
+        return celular;
+    }
+
+    public void setCelular(String cel) {
+        celular = cel;
+    }
+
+    public String getDataNascimento() {
+        return dataNascimento;
+    }
+
+    public void setDataNascimento(String data) {
+        dataNascimento = data;
+    }
+
+    public String getMatricula() {
+        return matricula;
+    }
+
+    public void setMatricula(String matricula) {
+        this.matricula = matricula;
+    }
+
+    public String getSerie() {
+        return serie;
+    }
+
+    public void setSerie(String serie) {
+        this.serie = serie;
+    }
+
+    public int getIdTurma() {
+        return idTurma;
+    }
+
+    public void setIdTurma(int idTurma) {
+        this.idTurma = idTurma;
+    }
+
+    public String getTipoSanguineo() {
+        return tipoSanguineo;
+    }
+
+    public void setTipoSanguineo(String tipoSanguineo) {
+        this.tipoSanguineo = tipoSanguineo;
+    }
+
+    public String getCpfDoResponsavel() {
+        return cpfDoResponsavel;
+    }
+
+    public void setCpfDoResponsavel(String cpfDoResponsavel) {
+        this.cpfDoResponsavel = cpfDoResponsavel;
+    }
+
+    public boolean isAprovado() {
+        return aprovado;
+    }
+
+    public void setAprovado(boolean aprovado) {
+        this.aprovado = aprovado;
     }
 }

@@ -4,5 +4,8 @@
   - mudança na implementação das classes existentes (estudar novamente os casos de uso);
   - início da modelagem das telas
 
-# Classes
-![classes](classes_uml.png "Classes")
+## Classes básicas:
+![](classes_uml.png "Classes")
+
+## Classes de acesso ao banco de dados:
+![](classes_dao.png "Acesso ao banco")

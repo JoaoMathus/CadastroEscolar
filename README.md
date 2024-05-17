@@ -1,11 +1,22 @@
 # Sistema de cadastro escolar
-- O sistema será remodelado, seguem as mudanças:
-  - criação dos seguintes pacotes: DAOs, views, classesbasicas (organização melhor do código);
-  - mudança na implementação das classes existentes (estudar novamente os casos de uso);
-  - início da modelagem das telas
+Trata-se de um sistema básico de cadastro de alunos para um escola implementado na linguagem Java.  
+O banco de dados escolhido foi o SQLite, sendo acessado através de um driver pelo JDBC.  
+Para a interface gráfica, foi escolhido o Swing.
+## Coisas a serem implementadas:
+### Classes básicas
+- [ ] Classe Pessoa
+- [x] Classe Aluno
+- [ ] Classe Professor
+- [ ] Classe Turma
+- [ ] Classe Disciplina
+### Acesso ao banco de dados
+- [x] Classe AlunoDAO
+- [ ] Classe ProfessorDAO
+- [ ] Classe TurmaDAO
+- [ ] Classe DisciplinaDAO
 
-## Classes básicas:
-![](classes_uml.png "Classes")
+## UML das classes básicas:
+![UML das classes básicas](classes_uml.png "Classes")
 
 ## Classes de acesso ao banco de dados:
-![](classes_dao.png "Acesso ao banco")
+![UML das classes de acesso ao banco de dados](classes_dao.png "Acesso ao banco")

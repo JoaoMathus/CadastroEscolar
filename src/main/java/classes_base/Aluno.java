@@ -1,9 +1,14 @@
 package classes_base;
 
+import java.util.ArrayList;
+import java.util.List;
+
 public class Aluno extends Pessoa {
     private String matricula;
     private String serie;
     private int idTurma;
+    private List<Disciplina> disciplinas = new ArrayList<Disciplina>();
+
     private String tipoSanguineo;
     private String cpfDoResponsavel;
     private boolean aprovado;
@@ -20,6 +25,8 @@ public class Aluno extends Pessoa {
         this.cpfDoResponsavel = cpfDoResponsavel;
         this.aprovado = aprovado;
     }
+
+    public Aluno() {}
 
     public int getId() {
         return id;
@@ -61,10 +68,6 @@ public class Aluno extends Pessoa {
         return matricula;
     }
 
-    public void setMatricula(String matricula) {
-        this.matricula = matricula;
-    }
-
     public String getSerie() {
         return serie;
     }
@@ -104,4 +107,17 @@ public class Aluno extends Pessoa {
     public void setAprovado(boolean aprovado) {
         this.aprovado = aprovado;
     }
+
+    public List<Disciplina> getDisciplinas() {
+        return disciplinas;
+    }
+
+    public void adicionarDisciplina(Disciplina disc) {
+        this.disciplinas.add(disc);
+    }
+
+    public void removerDisciplina(Disciplina disc) {
+        this.disciplinas.remove(disc);
+    }
+
 }

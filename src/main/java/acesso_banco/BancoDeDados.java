@@ -6,46 +6,43 @@ import java.sql.SQLException;
 import java.sql.Statement;
 
 public class BancoDeDados {
-    private final String script = "CREATE TABLE IF NOT EXISTS aluno (\n" +
-            "    idaluno INTEGER PRIMARY KEY,\n" +
-            "    nome TEXT,\n" +
-            "    datanascimento TEXT,\n" +
-            "    matricula TEXT,\n" +
-            "    telefone TEXT,\n" +
-            "    cpfdoresponsavel TEXT,\n" +
-            "    tiposanguineo TEXT,\n" +
-            "    serie TEXT,\n" +
-            "    aprovado INTEGER,\n" +
-            "    fk_idturma INTEGER,\n" +
-            "    FOREIGN KEY (fk_idturma) REFERENCES turma(idturma)\n" +
-            ");\n" +
-            "\n" +
-            "CREATE TABLE IF NOT EXISTS professor (\n" +
-            "    idprofessor INTEGER PRIMARY KEY,\n" +
-            "    nome TEXT,\n" +
-            "    cpf TEXT,\n" +
-            "    telefone TEXT,\n" +
-            "    datanascimento TEXT\n" +
-            ");\n" +
-            "\n" +
-            "CREATE TABLE IF NOT EXISTS turma (\n" +
-            "    idturma INTEGER PRIMARY KEY,\n" +
-            "    capacidade INTEGER,\n" +
-            "    serie TEXT,\n" +
-            "    numero TEXT,\n" +
-            "    fk_idprofessor INTEGER,\n" +
-            "    FOREIGN KEY (fk_idprofessor) REFERENCES professor(idprofessor)\n" +
-            ");\n" +
-            "\n" +
-            "CREATE TABLE IF NOT EXISTS disciplina (\n" +
-            "    iddisciplina INTEGER PRIMARY KEY,\n" +
-            "    av1 REAL,\n" +
-            "    av2 REAL,\n" +
-            "    media REAL,\n" +
-            "    nome TEXT,\n" +
-            "    fk_idaluno INTEGER,\n" +
-            "    FOREIGN KEY (fk_idaluno) REFERENCES aluno(idaluno)\n" +
-            ");";
+    private final String tabelaProfessor = "CREATE TABLE IF NOT EXISTS professor (\n" +
+            "        idprofessor INTEGER PRIMARY KEY,\n" +
+            "        nome TEXT,\n" +
+            "        cpf TEXT,\n" +
+            "        telefone TEXT,\n" +
+            "        datanascimento TEXT\n" +
+            ")";
+    private final String tabelaTurma = "CREATE TABLE IF NOT EXISTS turma (\n" +
+            "        idturma INTEGER PRIMARY KEY,\n" +
+            "        capacidade INTEGER,\n" +
+            "        serie TEXT,\n" +
+            "        numero TEXT,\n" +
+            "        fk_idprofessor INTEGER,\n" +
+            "        FOREIGN KEY (fk_idprofessor) REFERENCES professor(idprofessor)\n" +
+            ")";
+    private final String tabelaAluno = "CREATE TABLE IF NOT EXISTS aluno (\n" +
+            "        idaluno INTEGER PRIMARY KEY,\n" +
+            "        nome TEXT,\n" +
+            "        datanascimento TEXT,\n" +
+            "        matricula TEXT,\n" +
+            "        telefone TEXT,\n" +
+            "        cpfdoresponsavel TEXT,\n" +
+            "        tiposanguineo TEXT,\n" +
+            "        serie TEXT,\n" +
+            "        aprovado INTEGER,\n" +
+            "        fk_idturma INTEGER,\n" +
+            "        FOREIGN KEY (fk_idturma) REFERENCES turma(idturma)\n" +
+            ")";
+    private final String tabelaDisciplina = "CREATE TABLE IF NOT EXISTS disciplina (\n" +
+            "        iddisciplina INTEGER PRIMARY KEY,\n" +
+            "        av1 REAL,\n" +
+            "        av2 REAL,\n" +
+            "        media REAL,\n" +
+            "        nome TEXT,\n" +
+            "        fk_idaluno INTEGER,\n" +
+            "        FOREIGN KEY (fk_idaluno) REFERENCES aluno(idaluno)\n" +
+            ")";
 
     public BancoDeDados() {
         iniciarBanco();
@@ -53,9 +50,12 @@ public class BancoDeDados {
 
     private void iniciarBanco() {
         String arquivo_db = "dados.sqlite";
-        try (Connection conexao = DriverManager.getConnection("jdbc:sqlite" + arquivo_db);
-             Statement stmt = conexao.createStatement()) {
-            stmt.execute(script);
+        try (Connection conexao = DriverManager.getConnection("jdbc:sqlite:" + arquivo_db);
+        Statement stmt = conexao.createStatement()) {
+            stmt.execute(tabelaProfessor);
+            stmt.execute(tabelaTurma);
+            stmt.execute(tabelaAluno);
+            stmt.execute(tabelaDisciplina);
         } catch (SQLException ex) {
             System.err.println("Erro na criação do banco! " + ex.getMessage());
         }

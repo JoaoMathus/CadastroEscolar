@@ -4,7 +4,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class Aluno extends Pessoa {
-    private final String matricula;
+    private String matricula;
     private String serie;
     private int idTurma;
     private List<Disciplina> disciplinas = new ArrayList<Disciplina>();

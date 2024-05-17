@@ -1,9 +1,13 @@
 package classes_base;
 
+import lombok.Getter;
+import lombok.NoArgsConstructor;
+import lombok.Setter;
+
 import java.util.*;
 
+@Getter @Setter @NoArgsConstructor
 public class Aluno extends Pessoa {
-
     final String matricula;
     Map<String, Float> notasDeProva = new HashMap<>();
 
@@ -24,48 +28,6 @@ public class Aluno extends Pessoa {
         notasDeProva.put("AV1", 0.0f);
         notasDeProva.put("AV2", 0.0f);
     }
-
-    public Long getId() { return id; }
-
-    public String getNome() { return nome; }
-
-    public String getMatricula() { return matricula; }
-
-    public Map<String, Float> getNotas() {
-        return notasDeProva;
-    }
-
-    public String getSerie() { return serie; }
-
-    public String getDataNascimento() { return dataNascimento; }
-
-    public String getNumeroTurma() { return numeroTurma; }
-
-    public String getTipoSanguineo() { return tipoSanguineo; }
-
-    public List<String> getTelefones() { return telefones; }
-
-    public String getCpfDoResponsavel() { return cpfDoResponsavel; }
-
-    public void setNome(String nome) { this.nome = nome; }
-
-    public void setNota(String prova, float nota) {
-        notasDeProva.put(prova, nota);
-    }
-
-    public void setSerie(String serie) { this.serie = serie; }
-
-    public void setDataNascimento(String dataNascimento) { this.dataNascimento = dataNascimento; }
-
-    public void setNumeroTurma(String numeroTurma) { this.numeroTurma = numeroTurma; }
-
-    public void setTipoSanguineo(String tipoSanguineo) { this.tipoSanguineo = tipoSanguineo; }
-
-    public void adicionarTelefone(String telefone) { telefones.add(telefone); }
-
-    public void excluirTelefone(String telefone) { telefones.remove(telefone); }
-
-    public void setCpfDoResponsavel(String cpfDoResponsavel) { this.cpfDoResponsavel = cpfDoResponsavel; }
 
     public float calcularMedia() {
         // A maravilha que é programação funcional

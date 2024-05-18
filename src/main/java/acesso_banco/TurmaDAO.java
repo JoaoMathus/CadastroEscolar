@@ -60,7 +60,7 @@ public class TurmaDAO extends DAOAbstrato <Turma, Integer> {
             stmt.setInt(1, t.getCapacidade());
             stmt.setString(2, t.getSerie());
             stmt.setString(3, t.getNumero());
-            stmt.setInt(4, t.getProfessor().getId());
+            stmt.setInt(4, t.getIdProfessor());
             stmt.setInt(5, t.getId());
 
             stmt.executeUpdate();
@@ -79,7 +79,8 @@ public class TurmaDAO extends DAOAbstrato <Turma, Integer> {
             while (r.next()) {
                 // TODO: dar set() nos alunos e no professor da turma...
                 t = new Turma(r.getInt("idturma"), r.getString("numero"),
-                        r.getString("serie"), r.getInt("capacidade"));
+                        r.getString("serie"), r.getInt("capacidade"),
+                        r.getInt("fk_idprofessor"));
             }
         } catch (SQLException ex) {
             System.err.println("Erro ao selecionar turma: " + ex.getMessage());
@@ -96,7 +97,8 @@ public class TurmaDAO extends DAOAbstrato <Turma, Integer> {
 
             while (r.next()) {
                 lista.add(new Turma(r.getInt("idturma"), r.getString("numero"),
-                        r.getString("serie"), r.getInt("capacidade")));
+                        r.getString("serie"), r.getInt("capacidade"),
+                        r.getInt("fk_idprofessor")));
             }
         } catch (SQLException ex) {
             System.err.println("Erro ao selecionar todas as turmas: " + ex.getMessage());

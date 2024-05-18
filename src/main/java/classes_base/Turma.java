@@ -1,31 +1,34 @@
 package classes_base;
 
+import java.util.ArrayList;
 import java.util.List;
 
 public class Turma {
     private int id;
     private String numero;
     private String serie;
-    private List<Aluno> listaAlunos;
-    private Professor professor;
+    private List<Integer> listaIdAlunos;
     private int capacidade;
+    private int idProfessor;
 
     public Turma() {}
 
-    public Turma(int id, String numero, String serie, List<Aluno> listaAlunos, Professor professor, int capacidade) {
+    public Turma(int id, String numero, String serie, List<Integer> listaIdAlunos, int capacidade, int idProfessor) {
         this.id = id;
         this.numero = numero;
         this.serie = serie;
-        this.listaAlunos = listaAlunos;
-        this.professor = professor;
+        this.listaIdAlunos = listaIdAlunos;
         this.capacidade = capacidade;
+        this.idProfessor = idProfessor;
     }
 
-    public Turma(int id, String numero, String serie, int capacidade) {
+    public Turma(int id, String numero, String serie, int capacidade, int idProfessor) {
         this.id = id;
         this.numero = numero;
         this.serie = serie;
         this.capacidade = capacidade;
+        this.idProfessor = idProfessor;
+        this.listaIdAlunos = new ArrayList<>();
     }
 
     public int getId() {
@@ -48,20 +51,12 @@ public class Turma {
         this.serie = serie;
     }
 
-    public List<Aluno> getListaAlunos() {
-        return listaAlunos;
+    public List<Integer> getListaIdAlunos() {
+        return listaIdAlunos;
     }
 
-    public void setListaAlunos(List<Aluno> listaAlunos) {
-        this.listaAlunos = listaAlunos;
-    }
-
-    public Professor getProfessor() {
-        return professor;
-    }
-
-    public void setProfessor(Professor professor) {
-        this.professor = professor;
+    public void setListaIdAlunos(List<Integer> listaIdAlunos) {
+        this.listaIdAlunos = listaIdAlunos;
     }
 
     public int getCapacidade() {
@@ -72,11 +67,11 @@ public class Turma {
         this.capacidade = capacidade;
     }
 
-    public void adicionarAluno(Aluno a) {
-        this.listaAlunos.add(a);
+    public int getIdProfessor() {
+        return idProfessor;
     }
 
-    public void removerAluno(Aluno a) {
-        this.listaAlunos.remove(a);
+    public void setIdProfessor(int idProfessor) {
+        this.idProfessor = idProfessor;
     }
 }

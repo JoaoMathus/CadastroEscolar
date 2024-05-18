@@ -1,6 +1,5 @@
 package classes_base;
 
-import java.util.ArrayList;
 import java.util.List;
 
 public class Aluno extends Pessoa {
@@ -8,7 +7,6 @@ public class Aluno extends Pessoa {
     private String serie;
     private int idTurma;
     private List<Disciplina> disciplinas;
-
     private String tipoSanguineo;
     private String cpfDoResponsavel;
     private boolean aprovado;
@@ -81,6 +79,10 @@ public class Aluno extends Pessoa {
         return matricula;
     }
 
+    public void setMatricula(String matricula) {
+        this.matricula = matricula;
+    }
+
     public String getSerie() {
         return serie;
     }
@@ -95,6 +97,14 @@ public class Aluno extends Pessoa {
 
     public void setIdTurma(int idTurma) {
         this.idTurma = idTurma;
+    }
+
+    public List<Disciplina> getDisciplinas() {
+        return disciplinas;
+    }
+
+    public void setDisciplinas(List<Disciplina> disciplinas) {
+        this.disciplinas = disciplinas;
     }
 
     public String getTipoSanguineo() {
@@ -120,17 +130,4 @@ public class Aluno extends Pessoa {
     public void setAprovado(boolean aprovado) {
         this.aprovado = aprovado;
     }
-
-    public List<Disciplina> getDisciplinas() {
-        return disciplinas;
-    }
-
-    public void adicionarDisciplina(Disciplina disc) {
-        this.disciplinas.add(disc);
-    }
-
-    public void removerDisciplina(Disciplina disc) {
-        this.disciplinas.remove(disc);
-    }
-
 }

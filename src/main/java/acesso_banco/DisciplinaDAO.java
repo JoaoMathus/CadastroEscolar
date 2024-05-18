@@ -3,6 +3,8 @@ package acesso_banco;
 import classes_base.Disciplina;
 
 import java.sql.SQLException;
+import java.util.ArrayList;
+import java.util.List;
 
 public class DisciplinaDAO extends DAOAbstrato <Disciplina, Integer> {
     private final String scriptTabela = "CREATE TABLE IF NOT EXISTS disciplina (\n" +
@@ -77,5 +79,44 @@ public class DisciplinaDAO extends DAOAbstrato <Disciplina, Integer> {
         } catch (SQLException ex) {
             System.err.println("Erro ao alterar disciplina: " + ex.getMessage());
         }
+    }
+
+    @Override
+    public Disciplina selecionar(Integer id) {
+        Disciplina d = null;
+
+        try {
+            var stmt = conectar().prepareStatement("SELECT * FROM disciplina WHERE iddisciplina = ?");
+            stmt.setInt(1, id);
+            var r = stmt.executeQuery();
+            while (r.next()) {
+                d = new Disciplina(r.getInt("iddisciplina"), r.getString("nome"),
+                        r.getFloat("av1"), r.getFloat("av2"),
+                        r.getInt("fk_idaluno"));
+            }
+            fecharStatement(stmt);
+        } catch (SQLException ex) {
+            System.err.println("Erro ao selecionar disciplina: " + ex.getMessage());
+        }
+        return d;
+    }
+
+    @Override
+    public List<Disciplina> selecionarTodos() {
+        List<Disciplina> lista = new ArrayList<>();
+
+        try {
+            var stmt = conectar().createStatement();
+            var r = stmt.executeQuery("SELECT * FROM disciplina");
+            while (r.next()) {
+                lista.add(new Disciplina(r.getInt("iddisciplina"),
+                        r.getString("nome"), r.getFloat("av1"),
+                        r.getFloat("av2"), r.getInt("fk_idaluno")));
+            }
+            fecharStatement(stmt);
+        } catch (SQLException ex) {
+            System.err.println("Erro ao selecionar todas as disciplinas: " + ex.getMessage());
+        }
+        return lista;
     }
 }

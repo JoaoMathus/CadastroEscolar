@@ -13,7 +13,7 @@ Para a interface gráfica, foi escolhido o Swing.
 - [x] Classe AlunoDAO
 - [ ] Classe ProfessorDAO
 - [ ] Classe TurmaDAO
-- [ ] Classe DisciplinaDAO
+- [x] Classe DisciplinaDAO
 
 ## UML das classes básicas:
 ![UML das classes básicas](classes_uml.png "Classes")

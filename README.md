@@ -24,3 +24,9 @@ Para a interface gráfica, foi escolhido o Swing.
 
 ## Classes de acesso ao banco de dados:
 ![UML das classes de acesso ao banco de dados](classes_dao.png "Acesso ao banco")
+
+## Diagrama de entidades e relacionamentos:
+![Diagrama de entidades e relacionamentos](modelo_entidade_relacionamento.jpeg)
+
+## Diagrama lógico do banco de dados:
+![Diagrama lógico do banco de dados](diagrama_logico.jpeg)

@@ -11,7 +11,7 @@ Para a interface gráfica, foi escolhido o Swing.
 - [x] Classe Disciplina
 ### Acesso ao banco de dados
 - [x] Classe AlunoDAO
-- [ ] Classe ProfessorDAO
+- [x] Classe ProfessorDAO
 - [ ] Classe TurmaDAO
 - [x] Classe DisciplinaDAO
 

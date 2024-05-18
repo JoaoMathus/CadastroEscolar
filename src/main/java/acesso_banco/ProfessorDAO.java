@@ -3,6 +3,8 @@ package acesso_banco;
 import classes_base.Professor;
 
 import java.sql.SQLException;
+import java.util.ArrayList;
+import java.util.List;
 
 public class ProfessorDAO extends DAOAbstrato <Professor, Integer> {
     protected final String scriptTabela = "CREATE TABLE IF NOT EXISTS professor (\n" +
@@ -77,5 +79,42 @@ public class ProfessorDAO extends DAOAbstrato <Professor, Integer> {
         } catch (SQLException ex) {
             System.err.println("Erro ao alterar professor: " + ex.getMessage());
         }
+    }
+
+    @Override
+    public Professor selecionar(Integer id) {
+        Professor p = null;
+
+        try {
+            var stmt = conectar().prepareStatement("SELECT * FROM professor WHERE idprofessor = ?");
+            var r = stmt.executeQuery();
+            while (r.next()) {
+                p = new Professor(r.getInt("idprofessor"), r.getString("nome"),
+                        r.getString("cpf"), r.getString("telefone"),
+                        r.getString("celular"), r.getString("datanascimento"));
+            }
+            fecharStatement(stmt);
+        } catch (SQLException ex) {
+            System.err.println("Erro ao selecionar professor: " ex.getMessage());
+        }
+        return p;
+    }
+
+    @Override
+    public List<Professor> selecionarTodos() {
+        List<Professor> lista = new ArrayList<>();
+        try {
+            var stmt = conectar().createStatement();
+            var r = stmt.executeQuery("SELECT * FROM professor");
+            while (r.next()) {
+                lista.add(new Professor(r.getInt("idprofessor"), r.getString("nome"),
+                        r.getString("cpf"), r.getString("telefone"),
+                        r.getString("celular"), r.getString("datanascimento")));
+            }
+            fecharStatement(stmt);
+        } catch (SQLException ex) {
+            System.err.println("Erro ao selecionar todos os professores: " + ex.getMessage());
+        }
+        return lista;
     }
 }

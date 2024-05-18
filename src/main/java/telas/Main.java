@@ -1,9 +1,9 @@
 package telas;
 
-import acesso_banco.BancoDeDados;
+import javax.swing.JOptionPane;
 
 public class Main {
     public static void main(String[] args) {
-        new BancoDeDados();
+        JOptionPane.showMessageDialog(null, "A aplicação funcionou!");
     }
 }

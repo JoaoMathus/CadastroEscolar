@@ -30,7 +30,7 @@ public class DisciplinaDAO extends DAOAbstrato <Disciplina, Integer> {
         }
     }
 
-    public void inserir(float av1, float av2, float media, String nome, int idaluno) {
+    public void inserir(float av1, float av2, float media, String nome, int idAluno) {
         try (var stmt = conectar().prepareStatement("INSERT INTO disciplina (" +
                 "av1, av2, media, nome, fk_idaluno) VALUES (" +
                 "?, ?, ?, ?, ?)")) {
@@ -38,7 +38,7 @@ public class DisciplinaDAO extends DAOAbstrato <Disciplina, Integer> {
             stmt.setFloat(2, av2);
             stmt.setFloat(3, media);
             stmt.setString(4, nome);
-            stmt.setInt(5, idaluno);
+            stmt.setInt(5, idAluno);
 
             stmt.executeUpdate();
         } catch (SQLException ex) {
@@ -62,9 +62,9 @@ public class DisciplinaDAO extends DAOAbstrato <Disciplina, Integer> {
                 "av2 = ?, media = ?, nome = ?, fk_idaluno = ? WHERE iddisciplina = ?)")) {
             stmt.setFloat(1, d.getAv1());
             stmt.setFloat(2, d.getAv2());
-            stmt.setFloat(3, d.getMedia());
+            stmt.setFloat(3, d.calcularMedia());
             stmt.setString(4, d.getNome());
-            stmt.setInt(5, d.getIdaluno());
+            stmt.setInt(5, d.getIdAluno());
             stmt.setInt(6, d.getId());
 
             stmt.executeUpdate();

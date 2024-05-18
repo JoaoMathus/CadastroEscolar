@@ -14,10 +14,6 @@ public abstract class DAOAbstrato <E, K> {
         return DriverManager.getConnection("jdbc:sqlite:" + caminhoBanco);
     }
 
-    protected void fecharStatement(Statement stmt) throws SQLException {
-        stmt.getConnection().close();
-    }
-
     protected abstract void criarTabela();
 
     // Método inserir() é particular de cada classe, portanto não está aqui.

@@ -21,6 +21,13 @@ public class Turma {
         this.capacidade = capacidade;
     }
 
+    public Turma(int id, String numero, String serie, int capacidade) {
+        this.id = id;
+        this.numero = numero;
+        this.serie = serie;
+        this.capacidade = capacidade;
+    }
+
     public int getId() {
         return id;
     }

@@ -12,7 +12,7 @@ Para a interface gráfica, foi escolhido o Swing.
 ### Acesso ao banco de dados
 - [x] Classe AlunoDAO
 - [x] Classe ProfessorDAO
-- [ ] Classe TurmaDAO
+- [x] Classe TurmaDAO
 - [x] Classe DisciplinaDAO
 
 ## UML das classes básicas:

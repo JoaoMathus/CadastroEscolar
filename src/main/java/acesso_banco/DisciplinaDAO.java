@@ -23,20 +23,17 @@ public class DisciplinaDAO extends DAOAbstrato <Disciplina, Integer> {
 
     @Override
     protected void criarTabela() {
-        try {
-            var stmt = conectar().createStatement();
+        try (var stmt = conectar().createStatement()) {
             stmt.execute(scriptTabela);
-            fecharStatement(stmt);
         } catch (SQLException ex) {
             System.err.println("Erro ao criar tabela disciplina: " + ex.getMessage());
         }
     }
 
     public void inserir(float av1, float av2, float media, String nome, int idaluno) {
-        try {
-            var stmt = conectar().prepareStatement("INSERT INTO disciplina (" +
-                    "av1, av2, media, nome, fk_idaluno) VALUES (" +
-                    "?, ?, ?, ?, ?)");
+        try (var stmt = conectar().prepareStatement("INSERT INTO disciplina (" +
+                "av1, av2, media, nome, fk_idaluno) VALUES (" +
+                "?, ?, ?, ?, ?)")) {
             stmt.setFloat(1, av1);
             stmt.setFloat(2, av2);
             stmt.setFloat(3, media);
@@ -44,7 +41,6 @@ public class DisciplinaDAO extends DAOAbstrato <Disciplina, Integer> {
             stmt.setInt(5, idaluno);
 
             stmt.executeUpdate();
-            fecharStatement(stmt);
         } catch (SQLException ex) {
             System.err.println("Erro ao inserir disciplina: " + ex.getMessage());
         }
@@ -52,11 +48,9 @@ public class DisciplinaDAO extends DAOAbstrato <Disciplina, Integer> {
 
     @Override
     public void deletar(Integer id) {
-        try {
-            var stmt = conectar().prepareStatement("DELETE FROM disciplina WHERE iddisciplina = ?");
+        try (var stmt = conectar().prepareStatement("DELETE FROM disciplina WHERE iddisciplina = ?")) {
             stmt.setInt(1, id);
             stmt.executeUpdate();
-            fecharStatement(stmt);
         } catch (SQLException ex) {
             System.err.println("Erro ao deletar disciplina: " + ex.getMessage());
         }
@@ -64,9 +58,8 @@ public class DisciplinaDAO extends DAOAbstrato <Disciplina, Integer> {
 
     @Override
     public void alterar(Disciplina d) {
-        try {
-            var stmt = conectar().prepareStatement("UPDATE disciplina SET av1 = ?," +
-                    "av2 = ?, media = ?, nome = ?, fk_idaluno = ? WHERE iddisciplina = ?)");
+        try (var stmt = conectar().prepareStatement("UPDATE disciplina SET av1 = ?," +
+                "av2 = ?, media = ?, nome = ?, fk_idaluno = ? WHERE iddisciplina = ?)")) {
             stmt.setFloat(1, d.getAv1());
             stmt.setFloat(2, d.getAv2());
             stmt.setFloat(3, d.getMedia());
@@ -75,7 +68,6 @@ public class DisciplinaDAO extends DAOAbstrato <Disciplina, Integer> {
             stmt.setInt(6, d.getId());
 
             stmt.executeUpdate();
-            fecharStatement(stmt);
         } catch (SQLException ex) {
             System.err.println("Erro ao alterar disciplina: " + ex.getMessage());
         }
@@ -85,8 +77,7 @@ public class DisciplinaDAO extends DAOAbstrato <Disciplina, Integer> {
     public Disciplina selecionar(Integer id) {
         Disciplina d = null;
 
-        try {
-            var stmt = conectar().prepareStatement("SELECT * FROM disciplina WHERE iddisciplina = ?");
+        try (var stmt = conectar().prepareStatement("SELECT * FROM disciplina WHERE iddisciplina = ?")) {
             stmt.setInt(1, id);
             var r = stmt.executeQuery();
             while (r.next()) {
@@ -94,7 +85,6 @@ public class DisciplinaDAO extends DAOAbstrato <Disciplina, Integer> {
                         r.getFloat("av1"), r.getFloat("av2"),
                         r.getInt("fk_idaluno"));
             }
-            fecharStatement(stmt);
         } catch (SQLException ex) {
             System.err.println("Erro ao selecionar disciplina: " + ex.getMessage());
         }
@@ -105,15 +95,13 @@ public class DisciplinaDAO extends DAOAbstrato <Disciplina, Integer> {
     public List<Disciplina> selecionarTodos() {
         List<Disciplina> lista = new ArrayList<>();
 
-        try {
-            var stmt = conectar().createStatement();
+        try (var stmt = conectar().createStatement()) {
             var r = stmt.executeQuery("SELECT * FROM disciplina");
             while (r.next()) {
                 lista.add(new Disciplina(r.getInt("iddisciplina"),
                         r.getString("nome"), r.getFloat("av1"),
                         r.getFloat("av2"), r.getInt("fk_idaluno")));
             }
-            fecharStatement(stmt);
         } catch (SQLException ex) {
             System.err.println("Erro ao selecionar todas as disciplinas: " + ex.getMessage());
         }

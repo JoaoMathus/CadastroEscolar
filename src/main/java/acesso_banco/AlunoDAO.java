@@ -3,6 +3,7 @@ package acesso_banco;
 import classes_base.Aluno;
 
 import java.sql.Connection;
+import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
 import java.util.ArrayList;
@@ -30,10 +31,8 @@ public class AlunoDAO extends DAOAbstrato <Aluno, Integer> {
 
     @Override
     protected void criarTabela() {
-        try {
-            var stmt = conectar().createStatement();
+        try (var stmt = conectar().createStatement()) {
             stmt.execute(scriptTabela);
-            fecharStatement(stmt);
         } catch (SQLException ex) {
             System.err.println("Erro na criação da tabela aluno: " + ex.getMessage());
         }
@@ -42,11 +41,10 @@ public class AlunoDAO extends DAOAbstrato <Aluno, Integer> {
     public void inserir(String nome, String dataNascimento, String matricula,
                         String telefone, String celular, String cpfDoResponsavel,
                         String tipoSanguineo, String serie, int idturma) {
-        try {
-            var stmt = conectar().prepareStatement("INSERT INTO aluno (" +
-                    "nome, datanascimento, matricula, telefone, celular, cpfdoresponsavel, " +
-                    "tiposanguineo, serie, aprovado, fk_idturma) VALUES (?, ?, " +
-                            "?, ?, ?, ?, ?, ?, ?, ?)");
+        try (var stmt = conectar().prepareStatement("INSERT INTO aluno (" +
+                "nome, datanascimento, matricula, telefone, celular, cpfdoresponsavel, " +
+                "tiposanguineo, serie, aprovado, fk_idturma) VALUES (?, ?, " +
+                "?, ?, ?, ?, ?, ?, ?, ?)")) {
             stmt.setString(1, nome);
             stmt.setString(2, dataNascimento);
             stmt.setString(3, matricula);
@@ -59,8 +57,6 @@ public class AlunoDAO extends DAOAbstrato <Aluno, Integer> {
             stmt.setInt(10, idturma);
 
             stmt.executeUpdate();
-
-            fecharStatement(stmt);
         } catch (SQLException ex) {
             System.err.println("Erro na inserção de aluno: " + ex.getMessage());
         }
@@ -68,13 +64,10 @@ public class AlunoDAO extends DAOAbstrato <Aluno, Integer> {
 
     @Override
     public void deletar(Integer id) {
-        try {
-            var stmt = conectar().prepareStatement("DELETE FROM aluno WHERE " +
-                    "idaluno = ?");
+        try (var stmt = conectar().prepareStatement("DELETE FROM aluno WHERE " +
+                "idaluno = ?")) {
             stmt.setInt(1, id);
-
             stmt.executeUpdate();
-            fecharStatement(stmt);
         } catch (SQLException ex) {
             System.err.println("Erro em deletar aluno: " + ex.getMessage());
         }
@@ -82,20 +75,18 @@ public class AlunoDAO extends DAOAbstrato <Aluno, Integer> {
 
     @Override
     public void alterar(Aluno a) {
-        try {
-            var stmt = conectar().prepareStatement("UPDATE aluno " +
-                    "SET nome = ?," +
-                    "datanascimento = ?," +
-                    "matricula = ?," +
-                    "telefone = ?," +
-                    "celular = ?," +
-                    "cpfdoresponsavel = ?," +
-                    "tiposanguineo = ?," +
-                    "serie = ?," +
-                    "aprovado = ?," +
-                    "fk_idturma = ? " +
-                    "WHERE idaluno = ?");
-
+        try (var stmt = conectar().prepareStatement("UPDATE aluno " +
+                "SET nome = ?," +
+                "datanascimento = ?," +
+                "matricula = ?," +
+                "telefone = ?," +
+                "celular = ?," +
+                "cpfdoresponsavel = ?," +
+                "tiposanguineo = ?," +
+                "serie = ?," +
+                "aprovado = ?," +
+                "fk_idturma = ? " +
+                "WHERE idaluno = ?")) {
             stmt.setString(1, a.getNome());
             stmt.setString(2, a.getDataNascimento());
             stmt.setString(3, a.getMatricula());
@@ -108,8 +99,6 @@ public class AlunoDAO extends DAOAbstrato <Aluno, Integer> {
             stmt.setBoolean(10, a.isAprovado());
             stmt.setInt(11, a.getIdTurma());
             stmt.setInt(12, a.getId());
-
-            fecharStatement(stmt);
         } catch (SQLException ex) {
             System.err.println("Erro atualizando o aluno: " + ex.getMessage());
         }
@@ -118,11 +107,9 @@ public class AlunoDAO extends DAOAbstrato <Aluno, Integer> {
     @Override
     public Aluno selecionar(Integer id) {
         Aluno a = null;
-        try {
-            var stmt = conectar().prepareStatement("SELECT * FROM aluno WHERE idaluno = ?");
+        try (var stmt = conectar().prepareStatement("SELECT * FROM aluno WHERE idaluno = ?")) {
             stmt.setInt(1, id);
             var r = stmt.executeQuery();
-
             while (r.next()) {
                 a = new Aluno(r.getInt("idaluno"), r.getString("nome"),
                         r.getString("telefone"), r.getString("celular"),
@@ -131,8 +118,6 @@ public class AlunoDAO extends DAOAbstrato <Aluno, Integer> {
                         r.getString("tiposanguineo"), r.getString("cpfdoresponsavel"),
                         r.getBoolean("aprovado"));
             }
-
-            fecharStatement(stmt);
         } catch (SQLException ex) {
             System.err.println("Erro ao selecionar aluno: " + ex.getMessage());
         }
@@ -144,8 +129,7 @@ public class AlunoDAO extends DAOAbstrato <Aluno, Integer> {
     public List<Aluno> selecionarTodos() {
         List<Aluno> lista = new ArrayList<>();
 
-        try {
-            var stmt = conectar().createStatement();
+        try (var stmt = conectar().createStatement()) {
             var r = stmt.executeQuery("SELECT * FROM aluno");
 
             while (r.next()) {
@@ -156,8 +140,6 @@ public class AlunoDAO extends DAOAbstrato <Aluno, Integer> {
                         r.getString("tiposanguineo"), r.getString("cpfdoresponsavel"),
                         r.getBoolean("aprovado")));
             }
-
-            fecharStatement(stmt);
         } catch (SQLException ex) {
             System.err.println("Erro em selecionar todos os alunos: " + ex.getMessage());
         }

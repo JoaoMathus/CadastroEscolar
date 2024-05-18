@@ -6,13 +6,15 @@ public class Disciplina {
     private float av1;
     private float av2;
     private float media;
+    private int idaluno;
 
-    public Disciplina(int id, String nome, float av1, float av2) {
+    public Disciplina(int id, String nome, float av1, float av2, int idaluno) {
         this.id = id;
         this.nome = nome;
         this.av1 = av1;
         this.av2 = av2;
         this.media = (av1 + av2) / 2;
+        this.idaluno = idaluno;
     }
 
     public Disciplina() {}
@@ -51,5 +53,13 @@ public class Disciplina {
 
     public float getMedia() {
         return media;
+    }
+
+    public int getIdaluno() {
+        return idaluno;
+    }
+
+    public void setIdaluno(int idaluno) {
+        this.idaluno = idaluno;
     }
 }

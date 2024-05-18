@@ -20,7 +20,7 @@ public abstract class DAOAbstrato <E, K> {
 
     protected abstract void criarTabela();
 
-    public abstract void inserir(E entidade);
+    // Método inserir() é particular de cada classe, portanto não está aqui.
     public abstract void deletar(K chave);
     public abstract void alterar(E entidade);
     public abstract E selecionar(K chave);

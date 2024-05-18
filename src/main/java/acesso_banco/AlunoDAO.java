@@ -39,23 +39,24 @@ public class AlunoDAO extends DAOAbstrato <Aluno, Integer> {
         }
     }
 
-    @Override
-    public void inserir(Aluno a) {
+    public void inserir(String nome, String dataNascimento, String matricula,
+                        String telefone, String celular, String cpfDoResponsavel,
+                        String tipoSanguineo, String serie, int idturma) {
         try {
             var stmt = conectar().prepareStatement("INSERT INTO aluno (" +
                     "nome, datanascimento, matricula, telefone, celular, cpfdoresponsavel, " +
                     "tiposanguineo, serie, aprovado, fk_idturma) VALUES (?, ?, " +
                             "?, ?, ?, ?, ?, ?, ?, ?)");
-            stmt.setString(1, a.getNome());
-            stmt.setString(2, a.getDataNascimento());
-            stmt.setString(3, a.getMatricula());
-            stmt.setString(4, a.getTelefone());
-            stmt.setString(5, a.getCelular());
-            stmt.setString(6, a.getCpfDoResponsavel());
-            stmt.setString(7, a.getTipoSanguineo());
-            stmt.setString(8, a.getSerie());
-            stmt.setBoolean(9, a.isAprovado());
-            stmt.setInt(10, 0); // colocar posteriormente o id da turma que estuda
+            stmt.setString(1, nome);
+            stmt.setString(2, dataNascimento);
+            stmt.setString(3, matricula);
+            stmt.setString(4, telefone);
+            stmt.setString(5, celular);
+            stmt.setString(6, cpfDoResponsavel);
+            stmt.setString(7, tipoSanguineo);
+            stmt.setString(8, serie);
+            stmt.setBoolean(9, false); // obviante não está aprovado
+            stmt.setInt(10, idturma);
 
             stmt.executeUpdate();
 

@@ -7,11 +7,13 @@ public class Aluno extends Pessoa {
     private String matricula;
     private String serie;
     private int idTurma;
-    private List<Disciplina> disciplinas = new ArrayList<Disciplina>();
+    private List<Disciplina> disciplinas;
 
     private String tipoSanguineo;
     private String cpfDoResponsavel;
     private boolean aprovado;
+
+    public Aluno() {}
 
     public Aluno(int id, String nome, String telefone, String celular,
                  String dataNascimento, String matricula, String serie,
@@ -26,7 +28,18 @@ public class Aluno extends Pessoa {
         this.aprovado = aprovado;
     }
 
-    public Aluno() {}
+    public Aluno(int id, String nome, String telefone, String celular, String dataNascimento,
+                 String matricula, String serie, int idTurma, List<Disciplina> disciplinas,
+                 String tipoSanguineo, String cpfDoResponsavel, boolean aprovado) {
+        super(id, nome, telefone, celular, dataNascimento);
+        this.matricula = matricula;
+        this.serie = serie;
+        this.idTurma = idTurma;
+        this.disciplinas = disciplinas;
+        this.tipoSanguineo = tipoSanguineo;
+        this.cpfDoResponsavel = cpfDoResponsavel;
+        this.aprovado = aprovado;
+    }
 
     public int getId() {
         return id;

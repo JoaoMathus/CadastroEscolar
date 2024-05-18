@@ -7,7 +7,7 @@ Para a interface gráfica, foi escolhido o Swing.
 - [ ] Classe Pessoa
 - [x] Classe Aluno
 - [ ] Classe Professor
-- [ ] Classe Turma
+- [x] Classe Turma
 - [x] Classe Disciplina
 ### Acesso ao banco de dados
 - [x] Classe AlunoDAO

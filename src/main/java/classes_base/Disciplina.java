@@ -5,14 +5,14 @@ public class Disciplina {
     private String nome;
     private float av1;
     private float av2;
-    private int idaluno;
+    private int idAluno;
 
-    public Disciplina(int id, String nome, float av1, float av2, int idaluno) {
+    public Disciplina(int id, String nome, float av1, float av2, int idAluno) {
         this.id = id;
         this.nome = nome;
         this.av1 = av1;
         this.av2 = av2;
-        this.idaluno = idaluno;
+        this.idAluno = idAluno;
     }
 
     public Disciplina() {}
@@ -49,11 +49,11 @@ public class Disciplina {
         return (getAv1() + getAv2()) / 2;
     }
 
-    public int getIdaluno() {
-        return idaluno;
+    public int getIdAluno() {
+        return idAluno;
     }
 
-    public void setIdaluno(int idaluno) {
-        this.idaluno = idaluno;
+    public void setIdAluno(int idAluno) {
+        this.idAluno = idAluno;
     }
 }

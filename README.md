@@ -2,6 +2,10 @@
 Trata-se de um sistema básico de cadastro de alunos para um escola implementado na linguagem Java.  
 O banco de dados escolhido foi o SQLite, sendo acessado através de um driver pelo JDBC.  
 Para a interface gráfica, foi escolhido o Swing.
+
+## A fazer:
+- Implementar todas as classes modeladas até o momento.
+- Modificar os diagramas.
 ## Coisas a serem implementadas:
 ### Classes básicas
 - [ ] Classe Pessoa

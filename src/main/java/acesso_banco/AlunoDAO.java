@@ -53,7 +53,7 @@ public class AlunoDAO extends DAOAbstrato <Aluno, Integer> {
             stmt.setString(6, cpfDoResponsavel);
             stmt.setString(7, tipoSanguineo);
             stmt.setString(8, serie);
-            stmt.setBoolean(9, false); // obviante não está aprovado
+            stmt.setBoolean(9, false); // obviante não está aprovado ainda
             stmt.setInt(10, idturma);
 
             stmt.executeUpdate();

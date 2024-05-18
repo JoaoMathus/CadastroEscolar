@@ -103,5 +103,7 @@ public class TurmaDAO extends DAOAbstrato <Turma, Integer> {
         } catch (SQLException ex) {
             System.err.println("Erro ao selecionar todas as turmas: " + ex.getMessage());
         }
+
+        return lista;
     }
 }

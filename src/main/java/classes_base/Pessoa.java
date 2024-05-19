@@ -1,11 +1,21 @@
 package classes_base;
 
-public class Pessoa {
+public abstract class Pessoa {
     private int matricula;//id nome telefone celular e data de nascimento
     private String nome;
     private int telefone;
     private int celular;
     private String cpf;
+
+    protected Pessoa() {}
+
+    protected Pessoa(int matricula, String nome, int telefone, int celular, String cpf) {
+        this.matricula = matricula;
+        this.nome = nome;
+        this.telefone = telefone;
+        this.celular = celular;
+        this.cpf = cpf;
+    }
 
     public int getMatricula(){
         return matricula;
@@ -38,10 +48,4 @@ public class Pessoa {
     public String getCpf(){
         return cpf;
     }
-
-
-
-
-
-
 }

@@ -5,6 +5,7 @@ Para a interface gráfica, foi escolhido o Swing.
 
 ## A fazer:
 - Implementar todas as classes modeladas até o momento.
+- Adicionar interface gráfica ao projeto.
 - Modificar os diagramas.
 - Implementar algoritmo para resgatar todas as disciplinas de um aluno.
 - Implementar algoritmo para resgator todos os alunos de uma turma.

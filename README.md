@@ -10,7 +10,7 @@ Para a interface gráfica, foi escolhido o Swing.
 - Implementar algoritmo para resgator todos os alunos de uma turma.
 ## Coisas a serem implementadas:
 ### Classes básicas
-- [ ] Classe Pessoa
+- [x] Classe Pessoa
 - [x] Classe Aluno
 - [ ] Classe Professor
 - [x] Classe Turma

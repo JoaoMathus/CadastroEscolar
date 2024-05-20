@@ -15,6 +15,15 @@ public class ProfessorDAO extends DAOAbstrato <Professor, Integer> {
             "    celular TEXT,\n" +
             "    datanascimento TEXT\n" +
             ")";
+    private final String insertSql = "INSERT INTO professor (" +
+            "nome, cpf, telefone, celular, datanascimento) VALUES (" +
+            "?, ?, ?, ?, ?)";
+    private final String deleteSql = "DELETE FROM professor WHERE idprofessor = ?";
+    private final String updateSql = "UPDATE professor SET nome = ?, " +
+            "cpf = ?, telefone = ?, celular = ?, datanascimento = ? " +
+            "WHERE idprofessor = ?";
+    private final String selectSql = "SELECT * FROM professor WHERE idprofessor = ?";
+    private final String selectAllSql = "SELECT * FROM professor";
 
     public ProfessorDAO() {
         criarTabela();
@@ -31,9 +40,7 @@ public class ProfessorDAO extends DAOAbstrato <Professor, Integer> {
 
     public void inserir(String nome, String cpf, String telefone, String celular,
                         String dataNascimento) {
-        try (var stmt = conectar().prepareStatement("INSERT INTO professor (" +
-                "nome, cpf, telefone, celular, datanascimento) VALUES (" +
-                "?, ?, ?, ?, ?)")) {
+        try (var stmt = conectar().prepareStatement(insertSql)) {
             stmt.setString(1, nome);
             stmt.setString(2, cpf);
             stmt.setString(3, telefone);
@@ -47,7 +54,7 @@ public class ProfessorDAO extends DAOAbstrato <Professor, Integer> {
 
     @Override
     public void deletar(Integer idprofessor) {
-        try (var stmt = conectar().prepareStatement("DELETE FROM professor WHERE idprofessor = ?")) {
+        try (var stmt = conectar().prepareStatement(deleteSql)) {
             stmt.setInt(1, idprofessor);
             stmt.executeUpdate();
         } catch (SQLException ex) {
@@ -57,9 +64,7 @@ public class ProfessorDAO extends DAOAbstrato <Professor, Integer> {
 
     @Override
     public void alterar(Professor p) {
-        try (var stmt = conectar().prepareStatement("UPDATE professor SET nome = ?, " +
-                "cpf = ?, telefone = ?, celular = ?, datanascimento = ? " +
-                "WHERE idprofessor = ?")) {
+        try (var stmt = conectar().prepareStatement(updateSql)) {
             stmt.setString(1, p.getNome());
             stmt.setString(2, p.getCpf());
             stmt.setString(3, p.getTelefone());
@@ -77,7 +82,7 @@ public class ProfessorDAO extends DAOAbstrato <Professor, Integer> {
     public Professor selecionar(Integer id) {
         Professor p = null;
 
-        try (var stmt = conectar().prepareStatement("SELECT * FROM professor WHERE idprofessor = ?")) {
+        try (var stmt = conectar().prepareStatement(selectSql)) {
             var r = stmt.executeQuery();
             while (r.next()) {
                 p = new Professor(r.getInt("idprofessor"), r.getString("nome"),
@@ -94,7 +99,7 @@ public class ProfessorDAO extends DAOAbstrato <Professor, Integer> {
     public List<Professor> selecionarTodos() {
         List<Professor> lista = new ArrayList<>();
         try (var stmt = conectar().createStatement()) {
-            var r = stmt.executeQuery("SELECT * FROM professor");
+            var r = stmt.executeQuery(selectAllSql);
             while (r.next()) {
                 lista.add(new Professor(r.getInt("idprofessor"), r.getString("nome"),
                         r.getString("cpf"), r.getString("telefone"),

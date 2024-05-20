@@ -10,7 +10,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class AlunoDAO extends DAOAbstrato <Aluno, Integer> {
-    protected final String scriptTabela = "CREATE TABLE IF NOT EXISTS aluno (\n" +
+    private final String scriptTabela = "CREATE TABLE IF NOT EXISTS aluno (\n" +
             "    idaluno INTEGER PRIMARY KEY AUTOINCREMENT,\n" +
             "    nome TEXT,\n" +
             "    datanascimento TEXT,\n" +
@@ -24,6 +24,27 @@ public class AlunoDAO extends DAOAbstrato <Aluno, Integer> {
             "    fk_idturma INTEGER,\n" +
             "    FOREIGN KEY (fk_idturma) REFERENCES turma(idturma)\n" +
             ")";
+    private final String insertSql = "INSERT INTO aluno (" +
+            "nome, datanascimento, matricula, telefone, celular, cpfdoresponsavel, " +
+            "tiposanguineo, serie, aprovado, fk_idturma) VALUES (?, ?, " +
+            "?, ?, ?, ?, ?, ?, ?, ?)";
+    private final String deleteSql = "DELETE FROM aluno WHERE " +
+            "idaluno = ?";
+    private final String updateSql = "UPDATE aluno " +
+            "SET nome = ?," +
+            "datanascimento = ?," +
+            "matricula = ?," +
+            "telefone = ?," +
+            "celular = ?," +
+            "cpfdoresponsavel = ?," +
+            "tiposanguineo = ?," +
+            "serie = ?," +
+            "aprovado = ?," +
+            "fk_idturma = ? " +
+            "WHERE idaluno = ?";
+    private final String selectSql = "SELECT * FROM aluno WHERE idaluno = ?";
+    private final String selectAllSql = "SELECT * FROM aluno";
+
 
     public AlunoDAO() {
         criarTabela();
@@ -41,10 +62,7 @@ public class AlunoDAO extends DAOAbstrato <Aluno, Integer> {
     public void inserir(String nome, String dataNascimento, String matricula,
                         String telefone, String celular, String cpfDoResponsavel,
                         String tipoSanguineo, String serie, int idturma) {
-        try (var stmt = conectar().prepareStatement("INSERT INTO aluno (" +
-                "nome, datanascimento, matricula, telefone, celular, cpfdoresponsavel, " +
-                "tiposanguineo, serie, aprovado, fk_idturma) VALUES (?, ?, " +
-                "?, ?, ?, ?, ?, ?, ?, ?)")) {
+        try (var stmt = conectar().prepareStatement(insertSql)) {
             stmt.setString(1, nome);
             stmt.setString(2, dataNascimento);
             stmt.setString(3, matricula);
@@ -64,8 +82,7 @@ public class AlunoDAO extends DAOAbstrato <Aluno, Integer> {
 
     @Override
     public void deletar(Integer id) {
-        try (var stmt = conectar().prepareStatement("DELETE FROM aluno WHERE " +
-                "idaluno = ?")) {
+        try (var stmt = conectar().prepareStatement(deleteSql)) {
             stmt.setInt(1, id);
             stmt.executeUpdate();
         } catch (SQLException ex) {
@@ -75,18 +92,7 @@ public class AlunoDAO extends DAOAbstrato <Aluno, Integer> {
 
     @Override
     public void alterar(Aluno a) {
-        try (var stmt = conectar().prepareStatement("UPDATE aluno " +
-                "SET nome = ?," +
-                "datanascimento = ?," +
-                "matricula = ?," +
-                "telefone = ?," +
-                "celular = ?," +
-                "cpfdoresponsavel = ?," +
-                "tiposanguineo = ?," +
-                "serie = ?," +
-                "aprovado = ?," +
-                "fk_idturma = ? " +
-                "WHERE idaluno = ?")) {
+        try (var stmt = conectar().prepareStatement(updateSql)) {
             stmt.setString(1, a.getNome());
             stmt.setString(2, a.getDataNascimento());
             stmt.setString(3, a.getMatricula());
@@ -107,7 +113,7 @@ public class AlunoDAO extends DAOAbstrato <Aluno, Integer> {
     @Override
     public Aluno selecionar(Integer id) {
         Aluno a = null;
-        try (var stmt = conectar().prepareStatement("SELECT * FROM aluno WHERE idaluno = ?")) {
+        try (var stmt = conectar().prepareStatement(selectSql)) {
             stmt.setInt(1, id);
             var r = stmt.executeQuery();
             while (r.next()) {
@@ -130,7 +136,7 @@ public class AlunoDAO extends DAOAbstrato <Aluno, Integer> {
         List<Aluno> lista = new ArrayList<>();
 
         try (var stmt = conectar().createStatement()) {
-            var r = stmt.executeQuery("SELECT * FROM aluno");
+            var r = stmt.executeQuery(selectAllSql);
 
             while (r.next()) {
                 lista.add(new Aluno(r.getInt("idaluno"), r.getString("nome"),

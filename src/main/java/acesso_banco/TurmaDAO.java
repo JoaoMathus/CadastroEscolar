@@ -15,6 +15,14 @@ public class TurmaDAO extends DAOAbstrato <Turma, Integer> {
             "    fk_idprofessor INTEGER,\n" +
             "    FOREIGN KEY (fk_idprofessor) REFERENCES professor(idprofessor)\n" +
             ")";
+    private final String insertSql = "INSERT INTO turma (" +
+            "capacidade, serie, numero, fk_idprofessor) VALUES (" +
+            "?, ?, ?, ?)";
+    private final String deleteSql = "DELETE FROM turma WHERE idturma = ?";
+    private final String updateSql = "UPDATE turma SET capacidade = ?, " +
+            "serie = ?, numero = ?, fk_idprofessor = ? WHERE idturma = ?";
+    private final String selectSql = "SELECT * FROM turma WHERE idturma = ?";
+    private final String selectAllSql = "SELECT * FROM turma";
 
     public TurmaDAO() {
         criarTabela();
@@ -30,9 +38,7 @@ public class TurmaDAO extends DAOAbstrato <Turma, Integer> {
     }
 
     public void inserir(int capacidade, String serie, String numero, int professorId) {
-        try (var stmt = conectar().prepareStatement("INSERT INTO turma (" +
-                "capacidade, serie, numero, fk_idprofessor) VALUES (" +
-                "?, ?, ?, ?)")) {
+        try (var stmt = conectar().prepareStatement(insertSql)) {
             stmt.setInt(1, capacidade);
             stmt.setString(2, serie);
             stmt.setString(3, numero);
@@ -45,7 +51,7 @@ public class TurmaDAO extends DAOAbstrato <Turma, Integer> {
 
     @Override
     public void deletar(Integer id) {
-        try (var stmt = conectar().prepareStatement("DELETE FROM turma WHERE idturma = ?")) {
+        try (var stmt = conectar().prepareStatement(deleteSql)) {
             stmt.setInt(1, id);
             stmt.executeUpdate();
         } catch (SQLException ex) {
@@ -55,8 +61,7 @@ public class TurmaDAO extends DAOAbstrato <Turma, Integer> {
 
     @Override
     public void alterar(Turma t) {
-        try (var stmt = conectar().prepareStatement("UPDATE turma SET capacidade = ?, " +
-                "serie = ?, numero = ?, fk_idprofessor = ? WHERE idturma = ?")) {
+        try (var stmt = conectar().prepareStatement(updateSql)) {
             stmt.setInt(1, t.getCapacidade());
             stmt.setString(2, t.getSerie());
             stmt.setString(3, t.getNumero());
@@ -73,7 +78,7 @@ public class TurmaDAO extends DAOAbstrato <Turma, Integer> {
     public Turma selecionar(Integer id) {
         Turma t = null;
 
-        try (var stmt = conectar().prepareStatement("SELECT * FROM turma WHERE idturma = ?")) {
+        try (var stmt = conectar().prepareStatement(selectSql)) {
             stmt.setInt(1, id);
             var r = stmt.executeQuery();
             while (r.next()) {
@@ -92,7 +97,7 @@ public class TurmaDAO extends DAOAbstrato <Turma, Integer> {
     public List<Turma> selecionarTodos() {
         List<Turma> lista = new ArrayList<>();
 
-        try (var stmt = conectar().prepareStatement("SELECT * FROM turma")) {
+        try (var stmt = conectar().prepareStatement(selectAllSql)) {
             var r = stmt.executeQuery();
 
             while (r.next()) {

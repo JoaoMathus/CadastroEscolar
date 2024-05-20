@@ -9,6 +9,9 @@ Para a interface gráfica, foi escolhido o Swing.
 - Modificar os diagramas.
 - Implementar algoritmo para resgatar todas as disciplinas de um aluno.
 - Implementar algoritmo para resgator todos os alunos de uma turma.
+- Nova tabela para armazenar o histórico dos alunos.
+  - Está atrelada à tabela aluno.
+
 ## Coisas a serem implementadas:
 ### Classes básicas
 - [x] Classe Pessoa

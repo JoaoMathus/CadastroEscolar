@@ -10,7 +10,7 @@ Para a interface gráfica, foi escolhido o Swing.
 - Implementar algoritmo para resgatar todas as disciplinas de um aluno.
 - Implementar algoritmo para resgator todos os alunos de uma turma.
 
-## Coisas a serem implementadas:
+## Coisas a serem implementadas
 ### Classes básicas
 - [x] Classe Pessoa
 - [x] Classe Aluno
@@ -23,6 +23,15 @@ Para a interface gráfica, foi escolhido o Swing.
 - [x] Classe ProfessorDAO
 - [x] Classe TurmaDAO
 - [x] Classe DisciplinaDAO
+### Interface gráfica
+- [ ] Tela incial
+- [ ] Tela de cadastro de aluno
+- [ ] Tela de cadastro de professor
+- [ ] Tela de seleção de turmas
+- [ ] Tela de listagem de alunos e professres de um turma
+- [ ] Tela com informações do aluno
+- [ ] Tela do histórico do aluno
+- [ ] Tela com informações do professor
 
 ## UML das classes básicas:
 ![UML das classes básicas](classes_uml.png "Classes")

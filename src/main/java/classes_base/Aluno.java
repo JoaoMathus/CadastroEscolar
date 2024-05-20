@@ -39,42 +39,6 @@ public class Aluno extends Pessoa {
         this.aprovado = aprovado;
     }
 
-    public int getId() {
-        return id;
-    }
-
-    public String getNome() {
-        return nome;
-    }
-
-    public void setNome(String n) {
-        nome = n;
-    }
-
-    public String getTelefone() {
-        return telefone;
-    }
-
-    public void setTelefone(String tel) {
-        telefone = tel;
-    }
-
-    public String getCelular() {
-        return celular;
-    }
-
-    public void setCelular(String cel) {
-        celular = cel;
-    }
-
-    public String getDataNascimento() {
-        return dataNascimento;
-    }
-
-    public void setDataNascimento(String data) {
-        dataNascimento = data;
-    }
-
     public String getMatricula() {
         return matricula;
     }

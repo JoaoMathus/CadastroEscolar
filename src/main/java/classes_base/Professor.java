@@ -11,11 +11,9 @@ public class Professor extends Pessoa{
 
     public Professor() {}
 
-    public Professor(int id, String nome, String telefone, String celular, String dataNascimento,
-                     String cpf) {
+    public Professor(int id, String nome, String cpf, String telefone, String celular, String dataNascimento) {
         super (id, nome, telefone, celular, dataNascimento);
         this.cpf = cpf;
-        this.setNome(nome);
         this.turmas = new ArrayList<>();
     }
 

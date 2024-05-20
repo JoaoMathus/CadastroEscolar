@@ -6,7 +6,7 @@ import java.sql.SQLException;
 import java.util.List;
 
 public abstract class DAOAbstrato <E, K> {
-    protected final String arquivoBanco = "dados.db";
+    protected final String arquivoBanco = ":memory:";
     protected String scriptTabela;
     protected String insertSql;
     protected String deleteSql;

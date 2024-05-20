@@ -90,7 +90,7 @@ public class ProfessorDAO extends DAOAbstrato <Professor, Integer> {
                         r.getString("celular"), r.getString("datanascimento"));
             }
         } catch (SQLException ex) {
-            System.err.println("Erro ao selecionar professor: " ex.getMessage());
+            System.err.println("Erro ao selecionar professor: " + ex.getMessage());
         }
         return p;
     }

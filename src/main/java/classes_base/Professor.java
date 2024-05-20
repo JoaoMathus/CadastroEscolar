@@ -9,6 +9,8 @@ public class Professor extends Pessoa{
     private List<Turma> turmas;
     private String cpf;
 
+    public Professor() {}
+
     public Professor(int id, String nome, String telefone, String celular, String dataNascimento,
                      String cpf) {
         super (id, nome, telefone, celular, dataNascimento);
@@ -52,7 +54,7 @@ public class Professor extends Pessoa{
                 '}';
     }
 
-    public static void main(String[] args) {
+    public void testarProfessor() {
         Scanner scanner = new Scanner(System.in);
 
 
@@ -60,18 +62,18 @@ public class Professor extends Pessoa{
         String cpf = scanner.nextLine();
 
 
-        Professor professortur = new Professor(cpf);
+        Professor professortur = new Professor();
 
 
-        while (true) {
-            System.out.print("Digite o número da turma para adicionar (ou '0' para finalizar): ");
-            int turma = scanner.nextInt();
-            if (turma == 0) {
-                break;
-            }
-            professortur.adicionarTurma(turma);
-        }
-        professortur.listarTurmas();
+//        while (true) {
+//            System.out.print("Digite o número da turma para adicionar (ou '0' para finalizar): ");
+//            int turma = scanner.nextInt();
+//            if (turma == 0) {
+//                break;
+//            }
+//            professortur.adicionarTurma(turma);
+//        }
+//        professortur.listarTurmas();
 
         System.out.println(professortur);
 

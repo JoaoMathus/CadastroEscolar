@@ -29,7 +29,7 @@ public abstract class Pessoa {
         this.nome = nome;
     }
 
-    public int getTelefone(){
+    public String getTelefone(){
         return telefone;
     }
 
@@ -37,7 +37,7 @@ public abstract class Pessoa {
         this.telefone = telefone;
     }
 
-    public int getCelular(){
+    public String getCelular(){
         return celular;
     }
 

@@ -83,4 +83,18 @@ public class Disciplina {
     public void setMedia(float media) {
         this.media = media;
     }
+
+    @Override
+    public String toString() {
+        return "Disciplina{" +
+                "id=" + id +
+                ", nome='" + nome + '\'' +
+                ", anoLetivo='" + anoLetivo + '\'' +
+                ", aprovado=" + aprovado +
+                ", av1=" + av1 +
+                ", av2=" + av2 +
+                ", media=" + media +
+                ", idAluno=" + idAluno +
+                '}';
+    }
 }

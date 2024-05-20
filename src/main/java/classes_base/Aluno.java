@@ -94,4 +94,17 @@ public class Aluno extends Pessoa {
     public void setAprovado(boolean aprovado) {
         this.aprovado = aprovado;
     }
+
+    @Override
+    public String toString() {
+        return "Aluno{" +
+                "matricula='" + matricula + '\'' +
+                ", serie='" + serie + '\'' +
+                ", idTurma=" + idTurma +
+                ", disciplinas=" + disciplinas +
+                ", tipoSanguineo='" + tipoSanguineo + '\'' +
+                ", cpfDoResponsavel='" + cpfDoResponsavel + '\'' +
+                ", aprovado=" + aprovado +
+                '}';
+    }
 }

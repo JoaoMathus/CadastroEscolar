@@ -7,7 +7,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class DisciplinaDAO extends DAOAbstrato <Disciplina, Integer> {
-    private final String scriptTabela = "CREATE TABLE disciplina (\n" +
+    private final String scriptTabela = "CREATE TABLE IF NOT EXISTS disciplina (\n" +
             "    iddisciplina INTEGER PRIMARY KEY AUTOINCREMENT,\n" +
             "    nome TEXT,\n" +
             "    prova1 REAL,\n" +
@@ -20,7 +20,7 @@ public class DisciplinaDAO extends DAOAbstrato <Disciplina, Integer> {
             ")";
     private final String insertSql = "INSERT INTO disciplina (" +
             "nome, prova1, prova2, media, anoletivo, aprovado, fk_idaluno) VALUES (" +
-            "?, ?, ?, ?, ?, ?, ?, ?)";
+            "?, ?, ?, ?, ?, ?, ?)";
     private final String deleteSql = "DELETE FROM disciplina WHERE iddisciplina = ?";
     private final String updateSql = "UPDATE disciplina SET nome = ?," +
             "prova1 = ?, prova2 = ?, media = ?, " +
@@ -41,17 +41,16 @@ public class DisciplinaDAO extends DAOAbstrato <Disciplina, Integer> {
         }
     }
 
-    public void inserir(String nome, String bimestre, float av1, float av2, float media,
+    public void inserir(String nome, float av1, float av2, float media,
                         String anoLetivo, boolean aprovado, int idAluno) {
         try (var stmt = conectar().prepareStatement(insertSql)) {
             stmt.setString(1, nome);
-            stmt.setString(2, bimestre);
-            stmt.setFloat(3, av1);
-            stmt.setFloat(4, av2);
-            stmt.setFloat(5, media);
-            stmt.setString(6, anoLetivo);
-            stmt.setBoolean(7, aprovado);
-            stmt.setInt(8, idAluno);
+            stmt.setFloat(2, av1);
+            stmt.setFloat(3, av2);
+            stmt.setFloat(4, media);
+            stmt.setString(5, anoLetivo);
+            stmt.setBoolean(6, aprovado);
+            stmt.setInt(7, idAluno);
 
             stmt.executeUpdate();
         } catch (SQLException ex) {

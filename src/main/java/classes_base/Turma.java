@@ -74,4 +74,16 @@ public class Turma {
     public void setIdProfessor(int idProfessor) {
         this.idProfessor = idProfessor;
     }
+
+    @Override
+    public String toString() {
+        return "Turma{" +
+                "id=" + id +
+                ", numero='" + numero + '\'' +
+                ", serie='" + serie + '\'' +
+                ", listaIdAlunos=" + listaIdAlunos +
+                ", capacidade=" + capacidade +
+                ", idProfessor=" + idProfessor +
+                '}';
+    }
 }

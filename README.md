@@ -16,7 +16,7 @@ Para a interface gráfica, foi escolhido o Swing.
 ### Classes básicas
 - [x] Classe Pessoa
 - [x] Classe Aluno
-- [ ] Classe Professor
+- [x] Classe Professor
 - [x] Classe Turma
 - [x] Classe Disciplina
 ### Acesso ao banco de dados
@@ -35,4 +35,4 @@ Para a interface gráfica, foi escolhido o Swing.
 ![Diagrama de entidades e relacionamentos](modelo_entidade_relacionamento.png)
 
 ## Diagrama lógico do banco de dados:
-![Diagrama lógico do banco de dados](diagrama_logico.jpeg)
+![Diagrama lógico do banco de dados](diagrama_logico.png)

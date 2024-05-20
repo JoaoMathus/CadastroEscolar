@@ -38,6 +38,7 @@ public class Professor extends Pessoa{
         turmas.remove(turma);
     }
 
+    // Será usada para testes
     public void listarTurmas() {
         System.out.println("O professor de CPF " + cpf + " têm as Turmas:");
         System.out.println(turmas);
@@ -46,7 +47,9 @@ public class Professor extends Pessoa{
     @Override
     public String toString() {
         return "Professor{" +
-                "cpf='" + cpf + '\'' + ", turmas=" + turmas + '}';
+                "turmas=" + turmas +
+                ", cpf='" + cpf + '\'' +
+                '}';
     }
 
     public static void main(String[] args) {

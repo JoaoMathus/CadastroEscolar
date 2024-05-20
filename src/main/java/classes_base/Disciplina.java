@@ -8,16 +8,19 @@ public class Disciplina {
     private boolean aprovado;
     private float av1;
     private float av2;
+    private float media;
     private int idAluno;
 
-    public Disciplina(int id, String nome, String bimestre, String anoLevivo,
-                      float av1, float av2, int idAluno) {
+    public Disciplina(int id, String nome, String bimestre, float av1, float av2,
+                      float media, String anoLetivo, boolean aprovado, int idAluno) {
         this.id = id;
         this.nome = nome;
         this.bimestre = bimestre;
-        this.anoLetivo = anoLevivo;
+        this.anoLetivo = anoLetivo;
         this.av1 = av1;
         this.av2 = av2;
+        this.media = media;
+        this.aprovado = aprovado;
         this.idAluno = idAluno;
     }
 
@@ -51,10 +54,6 @@ public class Disciplina {
         this.av2 = av2;
     }
 
-    public float calcularMedia() {
-        return (getAv1() + getAv2()) / 2;
-    }
-
     public int getIdAluno() {
         return idAluno;
     }
@@ -85,5 +84,13 @@ public class Disciplina {
 
     public void setAprovado(boolean aprovado) {
         this.aprovado = aprovado;
+    }
+
+    public float getMedia() {
+        return media;
+    }
+
+    public void setMedia(float media) {
+        this.media = media;
     }
 }

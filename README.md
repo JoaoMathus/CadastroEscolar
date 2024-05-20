@@ -1,14 +1,21 @@
 # Sistema de cadastro escolar
 Trata-se de um sistema básico de cadastro de alunos para um escola implementado na linguagem Java.  
 O banco de dados escolhido foi o SQLite, sendo acessado através de um driver pelo JDBC.  
-Para a interface gráfica, foi escolhido o Swing.
+Para a interface gráfica, foi escolhido o javafx.
 
 ## A fazer:
 - Implementar todas as classes modeladas até o momento.
 - Adicionar interface gráfica ao projeto.
 - Modificar os diagramas.
-- Implementar algoritmo para resgatar todas as disciplinas de um aluno.
-- Implementar algoritmo para resgator todos os alunos de uma turma.
+- Implementar classes controladoras, que fazem o meio de campo entre as classes relacionandas ao banco e à GUI.
+  - Implementar algoritmo para resgatar todas as disciplinas de um aluno.
+  - Implementar algoritmo para resgator todos os alunos de uma turma.
+  - Implementar algoritmo para resgatar todo o histórico de um aluno.
+  - Implementar algoritmos para verificar se uma entidade já está no banco ao tentar inserí-la.
+
+## Ideias adicionais (implementadas se haver tempo antes da entrega)
+- Gráfico mostrando a performance do aluno com base no histórico.
+- Embelezamento da interface gráfica.
 
 ## Coisas a serem implementadas
 ### Classes básicas

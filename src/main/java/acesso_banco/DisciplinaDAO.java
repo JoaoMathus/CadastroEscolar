@@ -10,7 +10,6 @@ public class DisciplinaDAO extends DAOAbstrato <Disciplina, Integer> {
     private final String scriptTabela = "CREATE TABLE disciplina (\n" +
             "    iddisciplina INTEGER PRIMARY KEY AUTOINCREMENT,\n" +
             "    nome TEXT,\n" +
-            "    bimestre TEXT,\n" +
             "    prova1 REAL,\n" +
             "    prova2 REAL,\n" +
             "    media REAL,\n" +
@@ -20,11 +19,11 @@ public class DisciplinaDAO extends DAOAbstrato <Disciplina, Integer> {
             "    FOREIGN KEY(fk_idaluno) REFERENCES aluno(idaluno)\n" +
             ")";
     private final String insertSql = "INSERT INTO disciplina (" +
-            "nome, bimestre, prova1, prova2, media, anoletivo, aprovado, fk_idaluno) VALUES (" +
+            "nome, prova1, prova2, media, anoletivo, aprovado, fk_idaluno) VALUES (" +
             "?, ?, ?, ?, ?, ?, ?, ?)";
     private final String deleteSql = "DELETE FROM disciplina WHERE iddisciplina = ?";
     private final String updateSql = "UPDATE disciplina SET nome = ?," +
-            "bimestre = ?, prova1 = ?, prova2 = ?, media = ?, " +
+            "prova1 = ?, prova2 = ?, media = ?, " +
             "anoletivo = ?, aprovado = ?, fk_idaluno = ? WHERE iddisciplina = ?)";
     private final String selectSql = "SELECT * FROM disciplina WHERE iddisciplina = ?";
     private final String selectAllSql = "SELECT * FROM disciplina";
@@ -74,13 +73,12 @@ public class DisciplinaDAO extends DAOAbstrato <Disciplina, Integer> {
     public void alterar(Disciplina d) {
         try (var stmt = conectar().prepareStatement(updateSql)) {
             stmt.setString(1, d.getNome());
-            stmt.setString(2, d.getBimestre());
-            stmt.setFloat(3, d.getAv1());
-            stmt.setFloat(4, d.getAv2());
-            stmt.setFloat(5, d.getMedia());
-            stmt.setString(6, d.getAnoLetivo());
-            stmt.setBoolean(7, d.isAprovado());
-            stmt.setInt(8, d.getId());
+            stmt.setFloat(2, d.getAv1());
+            stmt.setFloat(3, d.getAv2());
+            stmt.setFloat(4, d.getMedia());
+            stmt.setString(5, d.getAnoLetivo());
+            stmt.setBoolean(6, d.isAprovado());
+            stmt.setInt(7, d.getId());
 
             stmt.executeUpdate();
         } catch (SQLException ex) {
@@ -96,7 +94,7 @@ public class DisciplinaDAO extends DAOAbstrato <Disciplina, Integer> {
             stmt.setInt(1, id);
             var r = stmt.executeQuery();
             while (r.next()) {
-                d = new Disciplina(r.getInt("iddisciplina"), r.getString("nome"), r.getString("bimestre"),
+                d = new Disciplina(r.getInt("iddisciplina"), r.getString("nome"),
                         r.getFloat("prova1"), r.getFloat("prova2"),
                         r.getFloat("media"), r.getString("anoletivo"),
                         r.getBoolean("aprovado"), r.getInt("fk_idaluno"));
@@ -114,10 +112,11 @@ public class DisciplinaDAO extends DAOAbstrato <Disciplina, Integer> {
         try (var stmt = conectar().createStatement()) {
             var r = stmt.executeQuery(selectAllSql);
             while (r.next()) {
-                lista.add(new Disciplina(r.getInt("iddisciplina"), r.getString("nome"), r.getString("bimestre"),
-                        r.getFloat("prova1"), r.getFloat("prova2"),
-                        r.getFloat("media"), r.getString("anoletivo"),
-                        r.getBoolean("aprovado"), r.getInt("fk_idaluno")));
+                lista.add(new Disciplina(r.getInt("iddisciplina"),
+                        r.getString("nome"), r.getFloat("prova1"),
+                        r.getFloat("prova2"), r.getFloat("media"),
+                        r.getString("anoletivo"), r.getBoolean("aprovado"),
+                        r.getInt("fk_idaluno")));
             }
         } catch (SQLException ex) {
             System.err.println("Erro ao selecionar todas as disciplinas: " + ex.getMessage());

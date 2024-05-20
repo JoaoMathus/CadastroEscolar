@@ -3,7 +3,6 @@ package classes_base;
 public class Disciplina {
     private int id;
     private String nome;
-    private String bimestre;
     private String anoLetivo;
     private boolean aprovado;
     private float av1;
@@ -11,11 +10,10 @@ public class Disciplina {
     private float media;
     private int idAluno;
 
-    public Disciplina(int id, String nome, String bimestre, float av1, float av2,
+    public Disciplina(int id, String nome, float av1, float av2,
                       float media, String anoLetivo, boolean aprovado, int idAluno) {
         this.id = id;
         this.nome = nome;
-        this.bimestre = bimestre;
         this.anoLetivo = anoLetivo;
         this.av1 = av1;
         this.av2 = av2;
@@ -60,14 +58,6 @@ public class Disciplina {
 
     public void setIdAluno(int idAluno) {
         this.idAluno = idAluno;
-    }
-
-    public String getBimestre() {
-        return bimestre;
-    }
-
-    public void setBimestre(String bimestre) {
-        this.bimestre = bimestre;
     }
 
     public String getAnoLetivo() {

@@ -1,24 +1,24 @@
 package classes_base;
 
 public abstract class Pessoa {
-    private int matricula;//id nome telefone celular e data de nascimento
+    private int id;
     private String nome;
-    private int telefone;
-    private int celular;
-    private String cpf;
+    private String telefone;
+    private String celular;
+    private String dataNascimento;
 
     protected Pessoa() {}
 
-    protected Pessoa(int matricula, String nome, int telefone, int celular, String cpf) {
-        this.matricula = matricula;
+    protected Pessoa(int id, String nome, String telefone, String celular, String dataNascimento) {
+        this.id = id;
         this.nome = nome;
         this.telefone = telefone;
         this.celular = celular;
-        this.cpf = cpf;
+        this.dataNascimento = dataNascimento;
     }
 
-    public int getMatricula(){
-        return matricula;
+    public int getId(){
+        return id;
     }
 
     public String getNome(){
@@ -33,7 +33,7 @@ public abstract class Pessoa {
         return telefone;
     }
 
-    public void setTelefone(int telefone){
+    public void setTelefone(String telefone){
         this.telefone = telefone;
     }
 
@@ -41,11 +41,15 @@ public abstract class Pessoa {
         return celular;
     }
 
-    public void setCelular(int celular){
+    public void setCelular(String celular){
         this.celular = celular;
     }
 
-    public String getCpf(){
-        return cpf;
+    public String getDataNascimento(){
+        return dataNascimento;
+    }
+
+    public void setDataNascimento(String dataNascimento) {
+        this.dataNascimento = dataNascimento;
     }
 }

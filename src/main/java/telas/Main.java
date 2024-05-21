@@ -7,9 +7,6 @@ import acesso_banco.TurmaDAO;
 
 public class Main {
     public static void main(String[] args) {
-        // Iniciando a interface gráfica
-        TestView.main(args);
-
         System.out.println("Hora de testar a conexão com o banco.");
         System.out.println();
 

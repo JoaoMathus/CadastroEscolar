@@ -4,16 +4,14 @@ public abstract class Pessoa {
     private int id;
     private String nome;
     private String telefone;
-    private String celular;
     private String dataNascimento;
 
     protected Pessoa() {}
 
-    protected Pessoa(int id, String nome, String telefone, String celular, String dataNascimento) {
+    protected Pessoa(int id, String nome, String telefone, String dataNascimento) {
         this.id = id;
         this.nome = nome;
         this.telefone = telefone;
-        this.celular = celular;
         this.dataNascimento = dataNascimento;
     }
 
@@ -35,14 +33,6 @@ public abstract class Pessoa {
 
     public void setTelefone(String telefone){
         this.telefone = telefone;
-    }
-
-    public String getCelular(){
-        return celular;
-    }
-
-    public void setCelular(String celular){
-        this.celular = celular;
     }
 
     public String getDataNascimento(){

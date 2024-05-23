@@ -13,27 +13,14 @@ public class Aluno extends Pessoa {
 
     public Aluno() {}
 
-    public Aluno(int id, String nome, String telefone, String celular,
-                 String dataNascimento, String matricula, String serie,
-                 int idTurma, String tipoSanguineo,
-                 String cpfDoResponsavel, boolean aprovado) {
-        super(id, nome, telefone, celular, dataNascimento);
+    public Aluno(int id, String nome, String dataNascimento,
+                 String matricula, String telefone, String cpfDoResponsavel,
+                 String tipoSanguineo, String serie,
+                 boolean aprovado, int idTurma) {
+        super(id, nome, telefone, dataNascimento);
         this.matricula = matricula;
         this.serie = serie;
         this.idTurma = idTurma;
-        this.tipoSanguineo = tipoSanguineo;
-        this.cpfDoResponsavel = cpfDoResponsavel;
-        this.aprovado = aprovado;
-    }
-
-    public Aluno(int id, String nome, String telefone, String celular, String dataNascimento,
-                 String matricula, String serie, int idTurma, List<Disciplina> disciplinas,
-                 String tipoSanguineo, String cpfDoResponsavel, boolean aprovado) {
-        super(id, nome, telefone, celular, dataNascimento);
-        this.matricula = matricula;
-        this.serie = serie;
-        this.idTurma = idTurma;
-        this.disciplinas = disciplinas;
         this.tipoSanguineo = tipoSanguineo;
         this.cpfDoResponsavel = cpfDoResponsavel;
         this.aprovado = aprovado;

@@ -38,6 +38,13 @@ public class TurmaDAO extends DAOAbstrato <Turma, Integer> {
     }
 
     public void inserir(int capacidade, String serie, String numero, int professorId) {
+        // Ver se a turma já existe
+        var turmas = selecionarTodos();
+        for (var turma : turmas) {
+            if (turma.getSerie().equals(serie) && turma.getNumero().equals(numero) &&
+            turma.getIdProfessor() == professorId)
+                return;
+        }
         try (var stmt = conectar().prepareStatement(insertSql)) {
             stmt.setInt(1, capacidade);
             stmt.setString(2, serie);
@@ -82,9 +89,8 @@ public class TurmaDAO extends DAOAbstrato <Turma, Integer> {
             stmt.setInt(1, id);
             var r = stmt.executeQuery();
             while (r.next()) {
-                // TODO: dar set() nos alunos e no professor da turma...
-                t = new Turma(r.getInt("idturma"), r.getString("numero"),
-                        r.getString("serie"), r.getInt("capacidade"),
+                t = new Turma(r.getInt("idturma"), r.getInt("capacidade"),
+                        r.getString("serie"), r.getString("numero"),
                         r.getInt("fk_idprofessor"));
             }
         } catch (SQLException ex) {
@@ -101,8 +107,8 @@ public class TurmaDAO extends DAOAbstrato <Turma, Integer> {
             var r = stmt.executeQuery();
 
             while (r.next()) {
-                lista.add(new Turma(r.getInt("idturma"), r.getString("numero"),
-                        r.getString("serie"), r.getInt("capacidade"),
+                lista.add(new Turma(r.getInt("idturma"), r.getInt("capacidade"),
+                        r.getString("serie"), r.getString("numero"),
                         r.getInt("fk_idprofessor")));
             }
         } catch (SQLException ex) {

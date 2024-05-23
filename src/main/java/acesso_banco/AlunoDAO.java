@@ -57,6 +57,15 @@ public class AlunoDAO extends DAOAbstrato <Aluno, Integer> {
     public void inserir(String nome, String dataNascimento, String matricula,
                         String telefone, String cpfDoResponsavel,
                         String tipoSanguineo, String serie, int idturma) {
+        // Ver se o aluno já está inserido
+        var alunos = selecionarTodos();
+        for (var aluno : alunos) {
+            if (aluno.getMatricula().equals(matricula) && aluno.getIdTurma() == idturma &&
+            aluno.getCpfDoResponsavel().equals(cpfDoResponsavel) && aluno.getNome().equals(nome) &&
+            aluno.getSerie().equals(serie) && aluno.getTipoSanguineo().equals(tipoSanguineo) &&
+            aluno.getDataNascimento().equals(dataNascimento))
+                return;
+        }
         try (var stmt = conectar().prepareStatement(insertSql)) {
             stmt.setString(1, nome);
             stmt.setString(2, dataNascimento);
@@ -65,7 +74,7 @@ public class AlunoDAO extends DAOAbstrato <Aluno, Integer> {
             stmt.setString(5, cpfDoResponsavel);
             stmt.setString(6, tipoSanguineo);
             stmt.setString(7, serie);
-            stmt.setBoolean(8, false); // obviante não está aprovado ainda
+            stmt.setBoolean(8, false);
             stmt.setInt(9, idturma);
 
             stmt.executeUpdate();
@@ -111,11 +120,10 @@ public class AlunoDAO extends DAOAbstrato <Aluno, Integer> {
             var r = stmt.executeQuery();
             while (r.next()) {
                 a = new Aluno(r.getInt("idaluno"), r.getString("nome"),
-                        r.getString("telefone"),
                         r.getString("datanascimento"), r.getString("matricula"),
-                        r.getString("serie"), r.getInt("fk_idturma"),
-                        r.getString("tiposanguineo"), r.getString("cpfdoresponsavel"),
-                        r.getBoolean("aprovado"));
+                        r.getString("telefone"), r.getString("cpfdoresponsavel"),
+                        r.getString("tiposanguineo"), r.getString("serie"),
+                        r.getBoolean("aprovado"), r.getInt("fk_idturma"));
             }
         } catch (SQLException ex) {
             System.err.println("Erro ao selecionar aluno: " + ex.getMessage());
@@ -133,11 +141,10 @@ public class AlunoDAO extends DAOAbstrato <Aluno, Integer> {
 
             while (r.next()) {
                 lista.add(new Aluno(r.getInt("idaluno"), r.getString("nome"),
-                        r.getString("telefone"),
                         r.getString("datanascimento"), r.getString("matricula"),
-                        r.getString("serie"), r.getInt("fk_idturma"),
-                        r.getString("tiposanguineo"), r.getString("cpfdoresponsavel"),
-                        r.getBoolean("aprovado")));
+                        r.getString("telefone"), r.getString("cpfdoresponsavel"),
+                        r.getString("tiposanguineo"), r.getString("serie"),
+                        r.getBoolean("aprovado"), r.getInt("fk_idturma")));
             }
         } catch (SQLException ex) {
             System.err.println("Erro em selecionar todos os alunos: " + ex.getMessage());

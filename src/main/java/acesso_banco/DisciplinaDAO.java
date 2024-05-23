@@ -46,6 +46,12 @@ public class DisciplinaDAO extends DAOAbstrato <Disciplina, Integer> {
     public void inserir(String nome, float notabimestre1, float notabimestre2,
                         float notabimestre3, float notabimestre4,
                         String anoLetivo, boolean aprovado, int idAluno) {
+        // Ver se essa disciplina já existe
+        var disciplinas = selecionarTodos();
+        for (var disciplina : disciplinas) {
+            if (disciplina.getNome().equals(nome) && disciplina.getIdAluno() == idAluno)
+                return;
+        }
         try (var stmt = conectar().prepareStatement(insertSql)) {
             stmt.setString(1, nome);
             stmt.setFloat(2, notabimestre1);

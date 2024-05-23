@@ -38,6 +38,13 @@ public class ProfessorDAO extends DAOAbstrato <Professor, Integer> {
     }
 
     public void inserir(String nome, String cpf, String telefone, String dataNascimento) {
+        // Ver se o professor já está no banco
+        var professores = selecionarTodos();
+        for (var professor : professores) {
+            if (professor.getNome().equals(nome) && professor.getCpf().equals(cpf) &&
+            professor.getDataNascimento().equals(dataNascimento))
+                return ;
+        }
         try (var stmt = conectar().prepareStatement(insertSql)) {
             stmt.setString(1, nome);
             stmt.setString(2, cpf);

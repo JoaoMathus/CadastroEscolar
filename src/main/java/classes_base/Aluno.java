@@ -85,7 +85,11 @@ public class Aluno extends Pessoa {
     @Override
     public String toString() {
         return "Aluno{" +
-                "matricula='" + matricula + '\'' +
+                "id=" + getId() + '\'' +
+                ", nome=" + getNome() + '\'' +
+                ", telefone=" + getTelefone() + '\'' +
+                ", dataNascimento=" + getDataNascimento() + '\'' +
+                ", matricula='" + matricula + '\'' +
                 ", serie='" + serie + '\'' +
                 ", idTurma=" + idTurma +
                 ", disciplinas=" + disciplinas +
@@ -94,4 +98,6 @@ public class Aluno extends Pessoa {
                 ", aprovado=" + aprovado +
                 '}';
     }
+
+
 }

@@ -1,10 +1,5 @@
 package classes_base;
 
-import java.util.ArrayList;
-import java.util.List;
-import java.util.Scanner;
-
-
 public class Professor extends Pessoa{
     private String cpf;
 
@@ -27,6 +22,10 @@ public class Professor extends Pessoa{
     @Override
     public String toString() {
         return "Professor{" +
+                "id= " + getId() + '\'' +
+                ", nome=" + getNome() + '\'' +
+                ", telefone=" + getTelefone() + '\'' +
+                ", dataNascimento=" + getDataNascimento() + '\'' +
                 "cpf='" + cpf + '\'' +
                 '}';
     }

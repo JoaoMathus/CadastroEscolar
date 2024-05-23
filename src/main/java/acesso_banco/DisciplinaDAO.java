@@ -10,20 +10,22 @@ public class DisciplinaDAO extends DAOAbstrato <Disciplina, Integer> {
     private final String scriptTabela = "CREATE TABLE IF NOT EXISTS disciplina (\n" +
             "    iddisciplina INTEGER PRIMARY KEY AUTOINCREMENT,\n" +
             "    nome TEXT,\n" +
-            "    prova1 REAL,\n" +
-            "    prova2 REAL,\n" +
-            "    media REAL,\n" +
+            "    notabimestre1 REAL,\n" +
+            "    notabimestre2 REAL,\n" +
+            "    notabimestre3 REAL,\n" +
+            "    notabimestre4 REAL,\n" +
             "    anoletivo TEXT,\n" +
             "    aprovado INTEGER,\n" +
             "    fk_idaluno INTEGER,\n" +
             "    FOREIGN KEY(fk_idaluno) REFERENCES aluno(idaluno)\n" +
             ")";
     private final String insertSql = "INSERT INTO disciplina (" +
-            "nome, prova1, prova2, media, anoletivo, aprovado, fk_idaluno) VALUES (" +
-            "?, ?, ?, ?, ?, ?, ?)";
+            "nome, notabimestre1, notabimestre2, notabimestre3, notabimestre4, anoletivo, " +
+            "aprovado, fk_idaluno) VALUES (" +
+            "?, ?, ?, ?, ?, ?, ?, ?)";
     private final String deleteSql = "DELETE FROM disciplina WHERE iddisciplina = ?";
     private final String updateSql = "UPDATE disciplina SET nome = ?," +
-            "prova1 = ?, prova2 = ?, media = ?, " +
+            "notabimestre1 = ?, notabimestre2 = ?, notabimestre3 = ?, notabimestre4 = ?, " +
             "anoletivo = ?, aprovado = ?, fk_idaluno = ? WHERE iddisciplina = ?)";
     private final String selectSql = "SELECT * FROM disciplina WHERE iddisciplina = ?";
     private final String selectAllSql = "SELECT * FROM disciplina";
@@ -41,16 +43,18 @@ public class DisciplinaDAO extends DAOAbstrato <Disciplina, Integer> {
         }
     }
 
-    public void inserir(String nome, float av1, float av2, float media,
+    public void inserir(String nome, float notabimestre1, float notabimestre2,
+                        float notabimestre3, float notabimestre4,
                         String anoLetivo, boolean aprovado, int idAluno) {
         try (var stmt = conectar().prepareStatement(insertSql)) {
             stmt.setString(1, nome);
-            stmt.setFloat(2, av1);
-            stmt.setFloat(3, av2);
-            stmt.setFloat(4, media);
-            stmt.setString(5, anoLetivo);
-            stmt.setBoolean(6, aprovado);
-            stmt.setInt(7, idAluno);
+            stmt.setFloat(2, notabimestre1);
+            stmt.setFloat(3, notabimestre2);
+            stmt.setFloat(4, notabimestre3);
+            stmt.setFloat(5, notabimestre4);
+            stmt.setString(6, anoLetivo);
+            stmt.setBoolean(7, aprovado);
+            stmt.setInt(8, idAluno);
 
             stmt.executeUpdate();
         } catch (SQLException ex) {
@@ -72,12 +76,14 @@ public class DisciplinaDAO extends DAOAbstrato <Disciplina, Integer> {
     public void alterar(Disciplina d) {
         try (var stmt = conectar().prepareStatement(updateSql)) {
             stmt.setString(1, d.getNome());
-            stmt.setFloat(2, d.getAv1());
-            stmt.setFloat(3, d.getAv2());
-            stmt.setFloat(4, d.getMedia());
-            stmt.setString(5, d.getAnoLetivo());
-            stmt.setBoolean(6, d.isAprovado());
-            stmt.setInt(7, d.getId());
+            stmt.setFloat(2, d.getNotaBimestre1());
+            stmt.setFloat(3, d.getNotaBimestre2());
+            stmt.setFloat(4, d.getNotaBimestre3());
+            stmt.setFloat(5, d.getNotaBimestre4());
+            stmt.setString(6, d.getAnoLetivo());
+            stmt.setBoolean(7, d.isAprovado());
+            stmt.setInt(8, d.getIdAluno());
+            stmt.setInt(9, d.getId());
 
             stmt.executeUpdate();
         } catch (SQLException ex) {
@@ -94,8 +100,9 @@ public class DisciplinaDAO extends DAOAbstrato <Disciplina, Integer> {
             var r = stmt.executeQuery();
             while (r.next()) {
                 d = new Disciplina(r.getInt("iddisciplina"), r.getString("nome"),
-                        r.getFloat("prova1"), r.getFloat("prova2"),
-                        r.getFloat("media"), r.getString("anoletivo"),
+                        r.getFloat("notabimestre1"), r.getFloat("notabimestre2"),
+                        r.getFloat("notabimestre3"), r.getFloat("notabimestre4"),
+                        r.getString("anoletivo"),
                         r.getBoolean("aprovado"), r.getInt("fk_idaluno"));
             }
         } catch (SQLException ex) {
@@ -112,8 +119,9 @@ public class DisciplinaDAO extends DAOAbstrato <Disciplina, Integer> {
             var r = stmt.executeQuery(selectAllSql);
             while (r.next()) {
                 lista.add(new Disciplina(r.getInt("iddisciplina"),
-                        r.getString("nome"), r.getFloat("prova1"),
-                        r.getFloat("prova2"), r.getFloat("media"),
+                        r.getString("nome"), r.getFloat("notabimestre1"),
+                        r.getFloat("notabimestre2"), r.getFloat("notabimestre3"),
+                        r.getFloat("notabimestre4"),
                         r.getString("anoletivo"), r.getBoolean("aprovado"),
                         r.getInt("fk_idaluno")));
             }

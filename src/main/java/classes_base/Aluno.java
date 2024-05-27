@@ -13,66 +13,17 @@ public class Aluno extends Pessoa {
 
     public Aluno() {}
 
-    public Aluno(int id, String nome, String telefone, String celular,
-                 String dataNascimento, String matricula, String serie,
-                 int idTurma, String tipoSanguineo,
-                 String cpfDoResponsavel, boolean aprovado) {
-        super(id, nome, telefone, celular, dataNascimento);
+    public Aluno(int id, String nome, String dataNascimento,
+                 String matricula, String telefone, String cpfDoResponsavel,
+                 String tipoSanguineo, String serie,
+                 boolean aprovado, int idTurma) {
+        super(id, nome, telefone, dataNascimento);
         this.matricula = matricula;
         this.serie = serie;
         this.idTurma = idTurma;
         this.tipoSanguineo = tipoSanguineo;
         this.cpfDoResponsavel = cpfDoResponsavel;
         this.aprovado = aprovado;
-    }
-
-    public Aluno(int id, String nome, String telefone, String celular, String dataNascimento,
-                 String matricula, String serie, int idTurma, List<Disciplina> disciplinas,
-                 String tipoSanguineo, String cpfDoResponsavel, boolean aprovado) {
-        super(id, nome, telefone, celular, dataNascimento);
-        this.matricula = matricula;
-        this.serie = serie;
-        this.idTurma = idTurma;
-        this.disciplinas = disciplinas;
-        this.tipoSanguineo = tipoSanguineo;
-        this.cpfDoResponsavel = cpfDoResponsavel;
-        this.aprovado = aprovado;
-    }
-
-    public int getId() {
-        return id;
-    }
-
-    public String getNome() {
-        return nome;
-    }
-
-    public void setNome(String n) {
-        nome = n;
-    }
-
-    public String getTelefone() {
-        return telefone;
-    }
-
-    public void setTelefone(String tel) {
-        telefone = tel;
-    }
-
-    public String getCelular() {
-        return celular;
-    }
-
-    public void setCelular(String cel) {
-        celular = cel;
-    }
-
-    public String getDataNascimento() {
-        return dataNascimento;
-    }
-
-    public void setDataNascimento(String data) {
-        dataNascimento = data;
     }
 
     public String getMatricula() {
@@ -130,4 +81,23 @@ public class Aluno extends Pessoa {
     public void setAprovado(boolean aprovado) {
         this.aprovado = aprovado;
     }
+
+    @Override
+    public String toString() {
+        return "Aluno{" +
+                "id=" + getId() + '\'' +
+                ", nome=" + getNome() + '\'' +
+                ", telefone=" + getTelefone() + '\'' +
+                ", dataNascimento=" + getDataNascimento() + '\'' +
+                ", matricula='" + matricula + '\'' +
+                ", serie='" + serie + '\'' +
+                ", idTurma=" + idTurma +
+                ", disciplinas=" + disciplinas +
+                ", tipoSanguineo='" + tipoSanguineo + '\'' +
+                ", cpfDoResponsavel='" + cpfDoResponsavel + '\'' +
+                ", aprovado=" + aprovado +
+                '}';
+    }
+
+
 }
